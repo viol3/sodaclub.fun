@@ -1,0 +1,1659 @@
+fileFormatVersion: 2
+guid: 8be1667f4a6db7f4ca44d46c1108a749
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8528939701281641092
+    second: bermudaui_0
+  - first:
+      213: -4087271403867037143
+    second: bermudaui_1
+  - first:
+      213: -6478135926377139078
+    second: bermudaui_2
+  - first:
+      213: -4562104383463380291
+    second: bermudaui_3
+  - first:
+      213: 5590140372242856998
+    second: bermudaui_4
+  - first:
+      213: 1349219973977068538
+    second: bermudaui_5
+  - first:
+      213: 2209673837168113118
+    second: bermudaui_6
+  - first:
+      213: 594082127856395010
+    second: bermudaui_7
+  - first:
+      213: -4688109896178161872
+    second: bermudaui_8
+  - first:
+      213: -23558698242165436
+    second: bermudaui_9
+  - first:
+      213: 6488345425955267142
+    second: bermudaui_10
+  - first:
+      213: 1914937361620114736
+    second: bermudaui_11
+  - first:
+      213: -1500502373861841706
+    second: bermudaui_12
+  - first:
+      213: -2902408279765242469
+    second: bermudaui_13
+  - first:
+      213: 4235431043892280166
+    second: bermudaui_14
+  - first:
+      213: 8983911766006163965
+    second: bermudaui_15
+  - first:
+      213: 1302201034235416707
+    second: bermudaui_16
+  - first:
+      213: 7107006868507739514
+    second: bermudaui_17
+  - first:
+      213: 1565033666768579979
+    second: bermudaui_18
+  - first:
+      213: 6027660947258842387
+    second: bermudaui_19
+  - first:
+      213: -4319167683539691667
+    second: bermudaui_20
+  - first:
+      213: 3401935059586362499
+    second: bermudaui_21
+  - first:
+      213: 5778062078888612721
+    second: bermudaui_22
+  - first:
+      213: 1357836524753964509
+    second: bermudaui_23
+  - first:
+      213: 8364408221684839564
+    second: bermudaui_24
+  - first:
+      213: -2004113640981038523
+    second: bermudaui_25
+  - first:
+      213: 5260828162704217860
+    second: bermudaui_26
+  - first:
+      213: -2769416750465837478
+    second: bermudaui_27
+  - first:
+      213: -1016874639157352611
+    second: bermudaui_28
+  - first:
+      213: 8802741932333294990
+    second: bermudaui_29
+  - first:
+      213: -6518696725787370146
+    second: bermudaui_30
+  - first:
+      213: 1961686483168554731
+    second: bermudaui_31
+  - first:
+      213: 7453027085442798457
+    second: bermudaui_32
+  - first:
+      213: 6461950303922419018
+    second: bermudaui_33
+  - first:
+      213: -3832454298637054690
+    second: bermudaui_34
+  - first:
+      213: -6039594915242007787
+    second: bermudaui_35
+  - first:
+      213: -4034494810007277032
+    second: bermudaui_36
+  - first:
+      213: -80462171400466260
+    second: bermudaui_37
+  - first:
+      213: 1277375668939482154
+    second: bermudaui_40
+  - first:
+      213: 4580172341318571281
+    second: bermudaui_41
+  - first:
+      213: -4369731701757495926
+    second: bermudaui_42
+  - first:
+      213: 4559996105723998209
+    second: bermudaui_43
+  - first:
+      213: -2777539747298487661
+    second: bermudaui_44
+  - first:
+      213: 832516941021175913
+    second: bermudaui_45
+  - first:
+      213: -1415858775324194011
+    second: bermudaui_46
+  - first:
+      213: 7573519324360330878
+    second: bermudaui_47
+  - first:
+      213: -3644735358060950197
+    second: bermudaui_48
+  - first:
+      213: 7172012478647407049
+    second: bermudaui_49
+  - first:
+      213: -7707376904802395078
+    second: bermudaui_50
+  - first:
+      213: -14585370987284084
+    second: bermudaui_51
+  - first:
+      213: 6535121417710415978
+    second: bermudaui_52
+  - first:
+      213: 5913547931755082650
+    second: bermudaui_53
+  - first:
+      213: -7180544628737103197
+    second: bermudaui_54
+  - first:
+      213: 4738721808307261370
+    second: bermudaui_55
+  - first:
+      213: -5061236079592553118
+    second: bermudaui_57
+  - first:
+      213: 701710232938304663
+    second: bermudaui_64
+  - first:
+      213: 8659582211483364891
+    second: bermudaui_65
+  - first:
+      213: 2035088923739229345
+    second: bermudaui_66
+  - first:
+      213: 3080368215600759810
+    second: bermudaui_67
+  - first:
+      213: 6693458307795552873
+    second: bermudaui_68
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: bermudaui_0
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 1643
+        width: 319
+        height: 383
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 57, y: 60, z: 61, w: 52}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4825e955871ec5670800000000000000
+      internalID: 8528939701281641092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_1
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 1905
+        width: 225
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 922a4ef30581747c0800000000000000
+      internalID: -4087271403867037143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_2
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 1918
+        width: 332
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a74389592b90916a0800000000000000
+      internalID: -6478135926377139078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_3
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 1855
+        width: 167
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbaa96bfb3620b0c0800000000000000
+      internalID: -4562104383463380291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_4
+      rect:
+        serializedVersion: 2
+        x: 1240
+        y: 1859
+        width: 166
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62cfa1cfc0b249d40800000000000000
+      internalID: 5590140372242856998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_5
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 1859
+        width: 163
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af3d3c8fa6469b210800000000000000
+      internalID: 1349219973977068538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_6
+      rect:
+        serializedVersion: 2
+        x: 1659
+        y: 1859
+        width: 167
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed531e5c5a65aae10800000000000000
+      internalID: 2209673837168113118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_7
+      rect:
+        serializedVersion: 2
+        x: 1871
+        y: 1859
+        width: 163
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 203e9463c8a9e3800800000000000000
+      internalID: 594082127856395010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_8
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 1518
+        width: 334
+        height: 385
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 57, y: 56, z: 59, w: 54}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 037ae4a53ec70feb0800000000000000
+      internalID: -4688109896178161872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_9
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 1754
+        width: 290
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 42, y: 57, z: 44, w: 43}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 445b7ef1d7d4caff0800000000000000
+      internalID: -23558698242165436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_10
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 1632
+        width: 372
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6422816c9cb3b0a50800000000000000
+      internalID: 6488345425955267142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_11
+      rect:
+        serializedVersion: 2
+        x: 1463
+        y: 1651
+        width: 583
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03d9d767269339a10800000000000000
+      internalID: 1914937361620114736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_12
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 1519
+        width: 223
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d4a55d7a052d2be0800000000000000
+      internalID: -1500502373861841706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_13
+      rect:
+        serializedVersion: 2
+        x: 1463
+        y: 1459
+        width: 583
+        height: 179
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9da0731c0398b7d0800000000000000
+      internalID: -2902408279765242469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_15
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1419
+        width: 178
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df9ef3207244dac70800000000000000
+      internalID: 8983911766006163965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_16
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 1421
+        width: 166
+        height: 187
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3809fb7f0f8521210800000000000000
+      internalID: 1302201034235416707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_17
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 1498
+        width: 315
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a754aa5a71921a260800000000000000
+      internalID: 7107006868507739514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_18
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 1369
+        width: 509
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8da449f3dd18b510800000000000000
+      internalID: 1565033666768579979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_19
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 1363
+        width: 313
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31d9bd312bd86a350800000000000000
+      internalID: 6027660947258842387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_20
+      rect:
+        serializedVersion: 2
+        x: 1263
+        y: 1339
+        width: 144
+        height: 131
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d67154130eb3f04c0800000000000000
+      internalID: -4319167683539691667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_21
+      rect:
+        serializedVersion: 2
+        x: 1464
+        y: 1271
+        width: 582
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38ca79799e9163f20800000000000000
+      internalID: 3401935059586362499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_24
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1241
+        width: 506
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c84b1e906f8541470800000000000000
+      internalID: 8364408221684839564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_25
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 1253
+        width: 866
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54a7fc30345ff24e0800000000000000
+      internalID: -2004113640981038523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_26
+      rect:
+        serializedVersion: 2
+        x: 1463
+        y: 1079
+        width: 579
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4071b564757320940800000000000000
+      internalID: 5260828162704217860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_29
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 1071
+        width: 126
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e856926062f992a70800000000000000
+      internalID: 8802741932333294990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_30
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 1067
+        width: 156
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5d11fc8ddfe885a0800000000000000
+      internalID: -6518696725787370146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_31
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 1010
+        width: 245
+        height: 208
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bee62f5867f493b10800000000000000
+      internalID: 1961686483168554731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_32
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 1076
+        width: 726
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 973de2975a87e6760800000000000000
+      internalID: 7453027085442798457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_33
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 853
+        width: 201
+        height: 201
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a45f58580957da950800000000000000
+      internalID: 6461950303922419018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_34
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 887
+        width: 103
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1dc1dfde1360dac0800000000000000
+      internalID: -3832454298637054690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_35
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 877
+        width: 121
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 513aeb97c6c0f2ca0800000000000000
+      internalID: -6039594915242007787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_36
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 883
+        width: 91
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 812fb5198589208c0800000000000000
+      internalID: -4034494810007277032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_37
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 849
+        width: 168
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca091d7d41422eef0800000000000000
+      internalID: -80462171400466260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_40
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 763
+        width: 211
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a246ddf27662ab110800000000000000
+      internalID: 1277375668939482154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_41
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 767
+        width: 231
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 115dc564a7a009f30800000000000000
+      internalID: 4580172341318571281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_42
+      rect:
+        serializedVersion: 2
+        x: 1467
+        y: 883
+        width: 576
+        height: 179
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a853bf84b289b53c0800000000000000
+      internalID: -4369731701757495926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_43
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 693
+        width: 147
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 100f7da5c4c584f30800000000000000
+      internalID: 4559996105723998209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_44
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 769
+        width: 90
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 392debcd0523479d0800000000000000
+      internalID: -2777539747298487661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_45
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 766
+        width: 110
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 960ef0b3fb1bd8b00800000000000000
+      internalID: 832516941021175913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_46
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 759
+        width: 95
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52b8ea402fbd95ce0800000000000000
+      internalID: -1415858775324194011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_47
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 704
+        width: 238
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7ecd0403bb8a1960800000000000000
+      internalID: 7573519324360330878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_48
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 286
+        width: 578
+        height: 567
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4d8872a08c4b6dc0800000000000000
+      internalID: -3644735358060950197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_49
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 510
+        width: 159
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c19272b95b188360800000000000000
+      internalID: 7172012478647407049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_50
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 638
+        width: 109
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3c143f5a85e90590800000000000000
+      internalID: -7707376904802395078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_51
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 634
+        width: 114
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c89b26faeae2ccff0800000000000000
+      internalID: -14585370987284084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_52
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 510
+        width: 154
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a603daa0e4a61ba50800000000000000
+      internalID: 6535121417710415978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_53
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 437
+        width: 228
+        height: 229
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a93f18a3384211250800000000000000
+      internalID: 5913547931755082650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_54
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 481
+        width: 239
+        height: 237
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aa294e44b4995c90800000000000000
+      internalID: -7180544628737103197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_55
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 495
+        width: 213
+        height: 212
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abf0d89b06253c140800000000000000
+      internalID: 4738721808307261370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_57
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 434
+        width: 182
+        height: 187
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 265ce77e990e2c9b0800000000000000
+      internalID: -5061236079592553118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_64
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 273
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7945b813db9fcb900800000000000000
+      internalID: 701710232938304663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_65
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 284
+        width: 404
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 55, y: 47, z: 60, w: 48}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1ee1c214240d2870800000000000000
+      internalID: 8659582211483364891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_66
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 119
+        width: 436
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ac0fc108961e3c10800000000000000
+      internalID: 2035088923739229345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_67
+      rect:
+        serializedVersion: 2
+        x: 1413
+        y: 13
+        width: 266
+        height: 265
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2048944529aafba20800000000000000
+      internalID: 3080368215600759810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_68
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 19
+        width: 270
+        height: 251
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96a8a031ed0f3ec50800000000000000
+      internalID: 6693458307795552873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_14
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 256
+        width: 212
+        height: 159
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 523d6559b88d47340b3ff6bfd554d173
+      internalID: -160020105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_22
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 233
+        width: 244
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d48cea8f2e740254fa50c35d0ed4c1e9
+      internalID: -518504896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_23
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 78
+        width: 228
+        height: 173
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84c0d17c4d02e8c4a98cd28713c2df6c
+      internalID: -255235345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_27
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 56
+        width: 230
+        height: 171
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dac192622fa51ac48be4713e94e148eb
+      internalID: 1334141266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bermudaui_28
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 50
+        width: 219
+        height: 215
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85a621781af174841b87717cbe09f3de
+      internalID: 92677455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 49d1013510ea5154986a1b888c2601e1
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      bermudaui_0: 8528939701281641092
+      bermudaui_1: -4087271403867037143
+      bermudaui_10: 6488345425955267142
+      bermudaui_11: 1914937361620114736
+      bermudaui_12: -1500502373861841706
+      bermudaui_13: -2902408279765242469
+      bermudaui_14: -160020105
+      bermudaui_15: 8983911766006163965
+      bermudaui_16: 1302201034235416707
+      bermudaui_17: 7107006868507739514
+      bermudaui_18: 1565033666768579979
+      bermudaui_19: 6027660947258842387
+      bermudaui_2: -6478135926377139078
+      bermudaui_20: -4319167683539691667
+      bermudaui_21: 3401935059586362499
+      bermudaui_22: -518504896
+      bermudaui_23: -255235345
+      bermudaui_24: 8364408221684839564
+      bermudaui_25: -2004113640981038523
+      bermudaui_26: 5260828162704217860
+      bermudaui_27: 1334141266
+      bermudaui_28: 92677455
+      bermudaui_29: 8802741932333294990
+      bermudaui_3: -4562104383463380291
+      bermudaui_30: -6518696725787370146
+      bermudaui_31: 1961686483168554731
+      bermudaui_32: 7453027085442798457
+      bermudaui_33: 6461950303922419018
+      bermudaui_34: -3832454298637054690
+      bermudaui_35: -6039594915242007787
+      bermudaui_36: -4034494810007277032
+      bermudaui_37: -80462171400466260
+      bermudaui_4: 5590140372242856998
+      bermudaui_40: 1277375668939482154
+      bermudaui_41: 4580172341318571281
+      bermudaui_42: -4369731701757495926
+      bermudaui_43: 4559996105723998209
+      bermudaui_44: -2777539747298487661
+      bermudaui_45: 832516941021175913
+      bermudaui_46: -1415858775324194011
+      bermudaui_47: 7573519324360330878
+      bermudaui_48: -3644735358060950197
+      bermudaui_49: 7172012478647407049
+      bermudaui_5: 1349219973977068538
+      bermudaui_50: -7707376904802395078
+      bermudaui_51: -14585370987284084
+      bermudaui_52: 6535121417710415978
+      bermudaui_53: 5913547931755082650
+      bermudaui_54: -7180544628737103197
+      bermudaui_55: 4738721808307261370
+      bermudaui_57: -5061236079592553118
+      bermudaui_6: 2209673837168113118
+      bermudaui_64: 701710232938304663
+      bermudaui_65: 8659582211483364891
+      bermudaui_66: 2035088923739229345
+      bermudaui_67: 3080368215600759810
+      bermudaui_68: 6693458307795552873
+      bermudaui_7: 594082127856395010
+      bermudaui_8: -4688109896178161872
+      bermudaui_9: -23558698242165436
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

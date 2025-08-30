@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 68612c99008339546b081729d56e136c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - FS Pimlico
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 964df26b00bb3c74eb04aba7cbacaa7f, type: 3}
+  - {fileID: 12800000, guid: 08809fb6b343ab444bdf9b5f4dd6350c, type: 3}
+  - {fileID: 12800000, guid: 08f69e5591350c24184f80a711cc0c02, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
