@@ -34,6 +34,33 @@ namespace Ali.Helper.Audio
             return false;
         }
 
+        public void PlayRandomCardFlip()
+        {
+            int randomIndex = Random.Range(1, 4);
+            PlayClipByName("card-flip-" + randomIndex, false, 0.5f);
+        }
+
+        public void PlayCardSpread()
+        {
+            PlayClipByName("card-spread", false, 0.5f);
+        }
+
+        public void PlaySodaOpen()
+        {
+            PlayClipByName("soda_open", false, 0.5f);
+        }
+
+        public void PlayFail()
+        {
+            PlayClipByName("fail", false, 0.5f);
+        }
+
+        public void PlayRandomCardShuffle()
+        {
+            int randomIndex = Random.Range(1, 5);
+            PlayClipByName("card-shuffle" + randomIndex, false, 0.5f);
+        }
+
         public void PlayClipByName(string clipName, bool loop = false, float volume = 1f, float pitch = 1f)
         {
             for (int i = 0; i < _clips.Length; i++)

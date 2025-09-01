@@ -1,4 +1,5 @@
 using Ali.Helper;
+using Ali.Helper.Audio;
 using Ali.Helper.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     private float _bet = 0.1f;
     private float _initialBet = 0.1f;
     private float _betFactor = 1f;
+
+    private bool _over = false;
 
     private CardObject _clickedCard = null;
 
@@ -133,8 +136,12 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
 
     void ResetSystem()
     {
-        _bet = _initialBet;
-        _betFactor = 1f;
+        if(_over)
+        {
+            _bet = _initialBet;
+            _betFactor = 1f;
+            _over = false;
+        }
         _normalCardIndices.Clear();
         for (int i = 0; i < 7; i++)
         {
@@ -175,6 +182,8 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
             _clickedCard.SetCardSprite(SpriteReferencer.Instance.GetDeathCardSprite());
             _bet = 0;
             _betFactor = 0;
+            AudioPool.Instance.PlayFail();
+            _over = true;
         }
         else if(diceValue == -1)
         {
@@ -183,15 +192,18 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         }
         else
         {
+
             _clickedCard.SetCardSprite(GetNextNormalCardSprite());
             float factor = GetCurrentFactor();
             _bet += _bet * factor;
             _betFactor += _betFactor * factor;
+            AudioPool.Instance.PlaySodaOpen();
         }
         UpdateBalanceUI();
         UpdateMultiplierText();
         UpdateBetText();
         _clickedCard.Flip();
+        
         _newHandButton.gameObject.SetActive(true);
         _deck.SetAllCardsClickable(true);
         _clickedCard.SetLoading(false);

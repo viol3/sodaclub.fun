@@ -1,3 +1,4 @@
+using Ali.Helper.Audio;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
@@ -74,6 +75,7 @@ public class CardObject : MonoBehaviour
         _flipping = true;
         _opened = !_opened;
         _flipCo = StartCoroutine(FlipProcess());
+        AudioPool.Instance.PlayRandomCardFlip();
     }
 
     IEnumerator FlipProcess()

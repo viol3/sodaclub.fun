@@ -1,4 +1,5 @@
 using Ali.Helper;
+using Ali.Helper.Audio;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
@@ -120,6 +121,7 @@ public class CardDeck : MonoBehaviour
         }
         _busy = true;
         StartCoroutine(SpreadProcess(points));
+        AudioPool.Instance.PlayCardSpread();
     }
 
     IEnumerator SpreadProcess(Vector3[] points)
@@ -185,6 +187,7 @@ public class CardDeck : MonoBehaviour
             {
                 _cards[indices[k]].transform.DOMoveX(_shuffleOffsetPerCard + (Random.Range(-0.5f, 0.5f)), _shuffleDurationPerCard).SetEase(Ease.InOutSine);
             }
+            AudioPool.Instance.PlayRandomCardShuffle();
             yield return new WaitForSeconds(_shuffleDurationPerCard);
             for (int k = 0; k < _cards.Count; k++)
             {
