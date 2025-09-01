@@ -166,6 +166,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eed3c974a3b81d4418dfba3b8fd2dbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deathCardPackageId: 0x5595b81a0a6d5af6c73b67e706203ad3fe1644a8955de82e544c624afbfd5b6d
+  _deathCardChestId: 0x6cc4dfc873dc4ed14c581f2c6c56659025d323d469a0e7875a66e93a12b3ebc5
+  OnDeathCardStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathCardEnded:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBalanceUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBalanceChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &12653929
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,9 +904,9 @@ RectTransform:
   - {fileID: 166135284}
   m_Father: {fileID: 1304008634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 123.97}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -75.8}
   m_SizeDelta: {x: 464.0658, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &239419733
@@ -1492,7 +1506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isSpeedBased: 0
   _speed: 0.5
-  _format: 0.00
+  _format: 0.000
   _postFix: 
 --- !u!1 &969709367
 GameObject:
@@ -2273,8 +2287,8 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1304008634}
   - {fileID: 1051738995}
+  - {fileID: 7320297}
   - {fileID: 12653931}
   - {fileID: 884399030}
   - {fileID: 309102852}
   - {fileID: 178046496}
-  - {fileID: 7320297}

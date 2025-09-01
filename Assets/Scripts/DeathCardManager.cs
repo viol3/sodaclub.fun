@@ -17,15 +17,16 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     [SerializeField] private Button _newHandButton;
 
     private float _balance = 10f;
-    private float _bet = 1f;
-    private float _initialBet = 1f;
+    private float _bet = 0.1f;
+    private float _initialBet = 0.1f;
     private float _betFactor = 1f;
+
+    private CardObject _clickedCard = null;
 
     private List<int> _normalCardIndices = new List<int>();
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        
         Init();
         _deck.SetAllCardsClickable(false);
         yield return new WaitForSeconds(0.5f);
@@ -122,6 +123,9 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
             item.OnClick += OnCardClick;
         }
 
+        SuiManager.Instance.OnDeathCardEnded.AddListener(OnDeathCardEnded);
+        SuiManager.Instance.OnBalanceUpdated.AddListener(OnBalanceUpdated);
+        SuiManager.Instance.OnBalanceChanged.AddListener(OnBalanceChanged);
         UpdateBalanceUI();
         UpdateMultiplierText();
         UpdateBetText();
@@ -152,32 +156,57 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         return SpriteReferencer.Instance.GetNormalCardSpriteByIndex(spriteIndex);
     }
 
-    void OnCardClick(CardObject card)
+    void OnBalanceUpdated(float balance)
     {
-        Debug.Log("Clicked card => " + card);
-        _newHandButton.gameObject.SetActive(true);
-        int closedCardCount = _deck.GetClosedCardCount();
-        int randomIndex = Random.Range(0, closedCardCount);
-        _balance -= _bet;
-        if (randomIndex == 0)
+        _balance = balance;
+        UpdateBalanceUI();
+    }
+
+    void OnBalanceChanged(float addAmount)
+    {
+        _balance += addAmount;
+        UpdateBalanceUI();
+    }
+
+    void OnDeathCardEnded(int diceValue)
+    {
+        if (diceValue == 1)
         {
-            card.SetCardSprite(SpriteReferencer.Instance.GetDeathCardSprite());
+            _clickedCard.SetCardSprite(SpriteReferencer.Instance.GetDeathCardSprite());
             _bet = 0;
             _betFactor = 0;
         }
+        else if(diceValue == -1)
+        {
+            Debug.Log("Errorrr!!!");
+            return;
+        }
         else
         {
-            card.SetCardSprite(GetNextNormalCardSprite());
+            _clickedCard.SetCardSprite(GetNextNormalCardSprite());
             float factor = GetCurrentFactor();
             _bet += _bet * factor;
             _betFactor += _betFactor * factor;
-            _balance += _bet;
         }
         UpdateBalanceUI();
         UpdateMultiplierText();
         UpdateBetText();
-        card.Flip();
+        _clickedCard.Flip();
+        _newHandButton.gameObject.SetActive(true);
+        _deck.SetAllCardsClickable(true);
+        _clickedCard.SetLoading(false);
     }
+
+    void OnCardClick(CardObject card)
+    {
+        Debug.Log("Clicked card => " + card);
+        int closedCardCount = _deck.GetClosedCardCount();
+        SuiManager.Instance.DeathCard(0.1f, (byte)closedCardCount);
+        _clickedCard = card;
+        card.SetLoading(true);
+        _deck.SetAllCardsClickable(false);
+    }
+
 
     public void OnNewHandButtonClick()
     {

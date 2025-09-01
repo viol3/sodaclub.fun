@@ -16,13 +16,18 @@ public class CardObject : MonoBehaviour
     [SerializeField] private SpriteRenderer _cardBack;
     [SerializeField] private SpriteRenderer _cardFront;
     [SerializeField] private SpriteRenderer _outline;
-
+    [SerializeField] private SpriteRenderer _loading;
     private Coroutine _flipCo;
     private bool _flipping = false;
     private bool _opened = false;
     private bool _clickable = false;
 
     public event System.Action<CardObject> OnClick;
+
+    public void SetLoading(bool loading)
+    {
+        _loading.gameObject.SetActive(loading);
+    }
 
     public void SetCardSprite(Sprite sprite)
     {
