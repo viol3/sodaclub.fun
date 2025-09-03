@@ -11,12 +11,16 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
 {
     [SerializeField] private Vector3[] _cardPositions;
     [Space]
+    [SerializeField] private RectTransform _betPanel;
+    [SerializeField] private RectTransform _tutorialPanel;
     [SerializeField] private CurrencyPanel _currencyPanel;
     [SerializeField] private SmoothNumberText _betText;
     [SerializeField] private SmoothNumberText _multiplierText;
     [SerializeField] private CardDeck _deck;
     [SerializeField] private Button _newHandButton;
     [SerializeField] private Button _cashOutButton;
+    [SerializeField] private Button _restartButton;
+    [SerializeField] private DeathCardBetButton[] _betButtons;
     private float _balance = 10f;
     private float _realBet = 0.25f;
     private float _bet = 0.25f;
@@ -110,6 +114,7 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         UpdateBalanceUI();
         UpdateMultiplierText();
         UpdateBetText();
+        _betButtons[0].OnClick();
     }
 
     void ResetSystem()
@@ -173,7 +178,9 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
             _bet = 0;
             _betFactor = 0;
             _over = true;
+            _newHandButton.gameObject.SetActive(false);
             _cashOutButton.gameObject.SetActive(false);
+            _restartButton.gameObject.SetActive(true);
             AudioPool.Instance.PlayFail();
         }
         else if(diceValue == -1)
@@ -195,12 +202,13 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
             _bet += _bet * factor;
             _betFactor += _betFactor * factor;
             _cashOutButton.gameObject.SetActive(true);
+            _newHandButton.gameObject.SetActive(true);
             AudioPool.Instance.PlaySodaOpen();
+            
         }
         UpdateBalanceUI();
         UpdateMultiplierText();
         UpdateBetText();
-        _newHandButton.gameObject.SetActive(true);
         
     }
 
@@ -212,8 +220,18 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         card.SetLoading(true);
         _deck.SetAllCardsClickable(false);
         AudioPool.Instance.PlayClipByName("shakebottle", false, 0.5f);
+        if(_betPanel.gameObject.activeInHierarchy)
+        {
+            _betPanel.gameObject.SetActive(false);
+            _tutorialPanel.gameObject.SetActive(false);
+        }
     }
 
+    public void OnRestartButtonClick()
+    {
+        OnCashOutButtonClick();
+        _restartButton.gameObject.SetActive(false);
+    }
 
     public void OnNewHandButtonClick()
     {
@@ -228,7 +246,28 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     public void OnCashOutButtonClick()
     {
         _over = true;
-        OnNewHandButtonClick();
+        ResetSystem();
+        UpdateBalanceUI();
+        UpdateMultiplierText();
+        UpdateBetText();
+        _newHandButton.gameObject.SetActive(false);
+        _cashOutButton.gameObject.SetActive(false);
+        _betPanel.gameObject.SetActive(true);
+        _tutorialPanel.gameObject.SetActive(true);
+        StartCoroutine(NewHandProcess());
+    }
+
+    public void OnBetButtonClick(DeathCardBetButton betButton)
+    {
+        _bet = betButton.GetValue();
+        _realBet = betButton.GetValue();
+        _initialBet = betButton.GetValue();
+        for (int i = 0; i < _betButtons.Length; i++)
+        {
+            _betButtons[i].UnSelect();
+        }
+        betButton.Select();
+        UpdateBetText();
     }
 
 }
