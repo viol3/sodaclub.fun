@@ -16,10 +16,11 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     [SerializeField] private SmoothNumberText _multiplierText;
     [SerializeField] private CardDeck _deck;
     [SerializeField] private Button _newHandButton;
-
+    [SerializeField] private Button _cashOutButton;
     private float _balance = 10f;
-    private float _bet = 0.1f;
-    private float _initialBet = 0.1f;
+    private float _realBet = 0.25f;
+    private float _bet = 0.25f;
+    private float _initialBet = 0.25f;
     private float _betFactor = 1f;
 
     private bool _over = false;
@@ -81,38 +82,15 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     float GetCurrentFactor()
     {
         int closedCardCount = _deck.GetClosedCardCount();
-        float factor = 0.45f;
-        if (closedCardCount == 3)
-        {
-            factor = 0.3f;
-        }
-        else if (closedCardCount == 4)
-        {
-            factor = 0.2f;
-        }
-        else if (closedCardCount == 5)
-        {
-            factor = 0.18f;
-        }
-        else if (closedCardCount == 6)
-        {
-            factor = 0.15f;
-        }
-        else if (closedCardCount == 7)
-        {
-            factor = 0.12f;
-        }
-        else if (closedCardCount == 8)
-        {
-            factor = 0.1f;
-        }
-;
+        float factor = (1f / (1f - (1f / closedCardCount))) - 1;
+        factor -= 0.03f;
         return factor;
     }
 
     void Init()
     {
         _bet = _initialBet;
+        _realBet = _bet;
         _normalCardIndices.Clear();
         for (int i = 0; i < 7; i++)
         {
@@ -139,6 +117,7 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         if(_over)
         {
             _bet = _initialBet;
+            _realBet = _bet;
             _betFactor = 1f;
             _over = false;
         }
@@ -172,6 +151,7 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     void OnBalanceChanged(float addAmount)
     {
         _balance += addAmount;
+        _realBet += addAmount;
         UpdateBalanceUI();
     }
 
@@ -179,11 +159,21 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     {
         if (diceValue == 1)
         {
+            _clickedCard.Flip();
+            List<CardObject> cards = _deck.GetClosedCards();
+            foreach (var card in cards)
+            {
+                card.SetCardSprite(GetNextNormalCardSprite());
+            }
+            _deck.FlipAllClosedCards();
+            _deck.SetAllCardsClickable(false);
+            _clickedCard.SetLoading(false);
             _clickedCard.SetCardSprite(SpriteReferencer.Instance.GetDeathCardSprite());
             _bet = 0;
             _betFactor = 0;
-            AudioPool.Instance.PlayFail();
             _over = true;
+            _cashOutButton.gameObject.SetActive(false);
+            AudioPool.Instance.PlayFail();
         }
         else if(diceValue == -1)
         {
@@ -192,28 +182,30 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         }
         else
         {
-
-            _clickedCard.SetCardSprite(GetNextNormalCardSprite());
             float factor = GetCurrentFactor();
+            _deck.SetAllCardsClickable(true);
+            _clickedCard.Flip();
+            _clickedCard.SetClickable(false);
+            _clickedCard.SetLoading(false);
+            _clickedCard.SetCardSprite(GetNextNormalCardSprite());
+            
             _bet += _bet * factor;
             _betFactor += _betFactor * factor;
+            _cashOutButton.gameObject.SetActive(true);
             AudioPool.Instance.PlaySodaOpen();
         }
         UpdateBalanceUI();
         UpdateMultiplierText();
         UpdateBetText();
-        _clickedCard.Flip();
-        
         _newHandButton.gameObject.SetActive(true);
-        _deck.SetAllCardsClickable(true);
-        _clickedCard.SetLoading(false);
+        
     }
 
     void OnCardClick(CardObject card)
     {
         Debug.Log("Clicked card => " + card);
         int closedCardCount = _deck.GetClosedCardCount();
-        SuiManager.Instance.DeathCard(0.1f, (byte)closedCardCount);
+        SuiManager.Instance.DeathCard(_realBet, (byte)closedCardCount);
         _clickedCard = card;
         card.SetLoading(true);
         _deck.SetAllCardsClickable(false);
@@ -227,6 +219,13 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         UpdateMultiplierText();
         UpdateBetText();
         _newHandButton.gameObject.SetActive(false);
+        _cashOutButton.gameObject.SetActive(false);
+    }
+
+    public void OnCashOutButtonClick()
+    {
+        _over = true;
+        OnNewHandButtonClick();
     }
 
 }

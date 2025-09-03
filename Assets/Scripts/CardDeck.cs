@@ -3,6 +3,7 @@ using Ali.Helper.Audio;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -23,6 +24,11 @@ public class CardDeck : MonoBehaviour
         return _cards;
     }
 
+    public List<CardObject> GetClosedCards()
+    {
+        return _cards.Where(c => !c.IsOpened()).ToList();
+    }
+
     public bool IsAnyCardBusy()
     {
         foreach (var card in _cards)
@@ -40,6 +46,17 @@ public class CardDeck : MonoBehaviour
         foreach (var card in _cards) 
         {
             card.SetClickable(clickable);
+        }
+    }
+
+    public void FlipAllClosedCards()
+    {
+        foreach (var card in _cards)
+        {
+            if(!card.IsOpened())
+            {
+                card.Flip();
+            }
         }
     }
 

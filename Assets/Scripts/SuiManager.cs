@@ -86,6 +86,7 @@ public class SuiManager : GenericSingleton<SuiManager>
 
     async Task<int> PlayDeathCard(decimal amount, byte cardCount)
     {
+        Debug.Log("Bet Amount => " + amount);
         TransactionBlock tx_block = new TransactionBlock();
         ulong requestedAmountLong = (ulong)(amount * 1_000_000_000m);
         List<TransactionArgument> splitArgs = tx_block.AddMoveCallTx
@@ -120,7 +121,14 @@ public class SuiManager : GenericSingleton<SuiManager>
             _account,
             transactionBlockResponseOptions
         );
-        if(result_task.Result.BalanceChanges != null && result_task.Result.BalanceChanges.Length > 0)
+
+        if (result_task.Error != null)
+        {
+            Debug.Log("PlayDeathCard Error => " + result_task.Error.Message);
+            return -1;
+        }
+
+        if (result_task.Result != null && result_task.Result.BalanceChanges != null && result_task.Result.BalanceChanges.Length > 0)
         {
             BigInteger changeAmountBig = result_task.Result.BalanceChanges[0].Amount;
             float changeAmount = GetFloatFromBigInteger(changeAmountBig);
@@ -128,23 +136,27 @@ public class SuiManager : GenericSingleton<SuiManager>
             Debug.Log(changeAmount + " => " + changeAmountBig);
             OnBalanceChanged?.Invoke(GetFloatFromBigInteger(result_task.Result.BalanceChanges[0].Amount));
         }
-        
-        if (result_task.Error != null)
-        {
-            Debug.Log("PlayDeathCard Error => " + result_task.Error.Message);
-            return -1;
-        }
+
         try
         {
-            string value = result_task.Result.Events[0].ParsedJson.GetValue("value").ToString();
-            Debug.Log("Fetched dice value => " + value);
-            return int.Parse(value);
+            foreach (var m_event in result_task.Result.Events)
+            {
+                if(m_event.Type.Contains("DiceValue"))
+                {
+                    string value = m_event.ParsedJson.GetValue("value").ToString();
+                    Debug.Log("Fetched dice value => " + value);
+                    return int.Parse(value);
+                }
+            }
+            return -1;
         }
-        catch(System.Exception ex)
+        catch (System.Exception ex)
         {
             Debug.LogError(ex.StackTrace);
             return -1;
         }
+        
+        
     }
 
 }
