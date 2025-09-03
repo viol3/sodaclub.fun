@@ -7362,6 +7362,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b21ed0aba7d4bb24faf0efb5c6b1ac4f, type: 3}
   - {fileID: 8300000, guid: cf6fc9d6ee416c445b34fa358a8626ab, type: 3}
   - {fileID: 8300000, guid: b3efbb2e7fd519d48ba3e55937766e39, type: 3}
+  - {fileID: 8300000, guid: ae70ca2e468076444abfca1e27daa1cf, type: 3}
   _poolCount: 5
 --- !u!4 &1185366227
 Transform:

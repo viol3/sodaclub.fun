@@ -157,6 +157,7 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
 
     void OnDeathCardEnded(int diceValue)
     {
+        AudioPool.Instance.StopClipByName("shakebottle");
         if (diceValue == 1)
         {
             _clickedCard.Flip();
@@ -205,12 +206,12 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
 
     void OnCardClick(CardObject card)
     {
-        Debug.Log("Clicked card => " + card);
         int closedCardCount = _deck.GetClosedCardCount();
         SuiManager.Instance.DeathCard(_realBet, (byte)closedCardCount);
         _clickedCard = card;
         card.SetLoading(true);
         _deck.SetAllCardsClickable(false);
+        AudioPool.Instance.PlayClipByName("shakebottle", false, 0.5f);
     }
 
 
