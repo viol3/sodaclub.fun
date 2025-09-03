@@ -24,10 +24,19 @@ public class CardObject : MonoBehaviour
     private bool _clickable = false;
 
     public event System.Action<CardObject> OnClick;
-
     public void SetLoading(bool loading)
     {
-        _loading.gameObject.SetActive(loading);
+        //_loading.gameObject.SetActive(loading);
+        if(loading)
+        {
+            _inter.DOShakePosition(1f, 0.08f, 15, 20, false, false).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
+        }
+        else
+        {
+            _inter.DOKill(true);
+            _inter.localPosition = Vector3.zero;
+        }
+            
     }
 
     public void SetCardSprite(Sprite sprite)

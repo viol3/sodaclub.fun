@@ -177,13 +177,15 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         }
         else if(diceValue == -1)
         {
-            Debug.Log("Errorrr!!!");
+            _clickedCard.SetLoading(false);
+            _deck.SetAllClosedCardsClickable(true);
+            MessageBox.Instance.Show("Blockchain returned an error. Reasons may :\r\n- Low Balance On House\r\n- Low Balance On User\r\n- Internal Code Error");
             return;
         }
         else
         {
             float factor = GetCurrentFactor();
-            _deck.SetAllCardsClickable(true);
+            _deck.SetAllClosedCardsClickable(true);
             _clickedCard.Flip();
             _clickedCard.SetClickable(false);
             _clickedCard.SetLoading(false);

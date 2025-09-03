@@ -43,8 +43,8 @@ public class SuiManager : GenericSingleton<SuiManager>
     {
         _client = new SuiClient(Constants.TestnetConnection);
         _account = new Account("0xb1751db9ab3ce30b1253eeec9ad68cd4db7ef7008debcdc7beae68f222789303");
-        Debug.Log(_account.PrivateKey.KeyHex);
-        Debug.Log(_account.SuiAddress().KeyHex);
+        //Debug.Log(_account.PrivateKey.KeyHex);
+        //Debug.Log(_account.SuiAddress().KeyHex);
         CheckBalance();
     }
 
@@ -59,7 +59,6 @@ public class SuiManager : GenericSingleton<SuiManager>
         RpcResult<Balance> result = await _client.GetBalanceAsync(_account);
         BigInteger balance = result.Result.TotalBalance;
         decimal suiBalance = (decimal)balance / 1_000_000_000m;
-        Debug.Log(suiBalance);
         OnBalanceUpdated?.Invoke((float)suiBalance);
     }
 
@@ -99,7 +98,6 @@ public class SuiManager : GenericSingleton<SuiManager>
                 tx_block.AddPure(new U64(requestedAmountLong)) // Insert split amount here
             }
         );
-        Debug.Log($"{_deathCardPackageId}{_deathCardModuleFunc}");
         tx_block.AddMoveCallTx
         (
             SuiMoveNormalizedStructType.FromStr($"{_deathCardPackageId}{_deathCardModuleFunc}"),
@@ -132,8 +130,6 @@ public class SuiManager : GenericSingleton<SuiManager>
         {
             BigInteger changeAmountBig = result_task.Result.BalanceChanges[0].Amount;
             float changeAmount = GetFloatFromBigInteger(changeAmountBig);
-            Debug.Log("Balance Change Length => " + result_task.Result.BalanceChanges.Length);
-            Debug.Log(changeAmount + " => " + changeAmountBig);
             OnBalanceChanged?.Invoke(GetFloatFromBigInteger(result_task.Result.BalanceChanges[0].Amount));
         }
 
@@ -144,7 +140,6 @@ public class SuiManager : GenericSingleton<SuiManager>
                 if(m_event.Type.Contains("DiceValue"))
                 {
                     string value = m_event.ParsedJson.GetValue("value").ToString();
-                    Debug.Log("Fetched dice value => " + value);
                     return int.Parse(value);
                 }
             }

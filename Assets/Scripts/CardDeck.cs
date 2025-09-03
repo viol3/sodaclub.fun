@@ -49,6 +49,14 @@ public class CardDeck : MonoBehaviour
         }
     }
 
+    public void SetAllClosedCardsClickable(bool clickable)
+    {
+        foreach (var card in _cards)
+        {
+            card.SetClickable(!card.IsOpened());
+        }
+    }
+
     public void FlipAllClosedCards()
     {
         foreach (var card in _cards)
