@@ -1,6 +1,7 @@
 using Ali.Helper;
 using NBitcoin;
 using OpenDive.BCS;
+using SHA3.Net;
 using Sui.Accounts;
 using Sui.Rpc;
 using Sui.Rpc.Client;
@@ -11,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Numerics;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager;
@@ -26,6 +28,8 @@ public class SuiManager : GenericSingleton<SuiManager>
     [SerializeField] private string _deathCardPackageId = "";
     [SerializeField] private string _deathCardChestId = "";
     private string _deathCardModuleFunc = "::lucky_game::play";
+    private string _deathCardCommitFunc = "::lucky_game::commit";
+    private string _deathCardRevealFunc = "::lucky_game::commit";
     private string _randomPackageId = "0x8";
 
     SuiStructTag _sui_coin = new SuiStructTag("0x2::sui::SUI");
@@ -46,6 +50,17 @@ public class SuiManager : GenericSingleton<SuiManager>
         //Debug.Log(_account.PrivateKey.KeyHex);
         //Debug.Log(_account.SuiAddress().KeyHex);
         CheckBalance();
+        Test();
+    }
+
+    async void Test()
+    {
+        byte[] secret = System.Guid.NewGuid().ToByteArray();
+        HashAlgorithm halg = Sha3.Create();
+        byte[] computedHash = halg.ComputeHash(secret);
+        Debug.Log("Ok");
+        await CommitReveal(0.1m, 8, computedHash);
+        
     }
 
     float GetFloatFromBigInteger(BigInteger value)
@@ -83,6 +98,56 @@ public class SuiManager : GenericSingleton<SuiManager>
         return result;
     }
 
+    async Task<int> CommitReveal(decimal amount, byte cardCount, byte[] commitHash)
+    {
+        Debug.Log("Bet Amount => " + amount);
+        TransactionBlock tx_block = new TransactionBlock();
+        ulong requestedAmountLong = (ulong)(amount * 1_000_000_000m);
+        List<TransactionArgument> splitArgs = tx_block.AddMoveCallTx
+        (
+            SuiMoveNormalizedStructType.FromStr("0x2::coin::split"),
+            new SerializableTypeTag[] { new SerializableTypeTag("0x2::sui::SUI") },
+            new TransactionArgument[]
+            {
+                tx_block.gas,  // Insert coin object ID here
+                tx_block.AddPure(new U64(requestedAmountLong)) // Insert split amount here
+            }
+        );
+        tx_block.AddMoveCallTx
+        (
+            SuiMoveNormalizedStructType.FromStr($"{_deathCardPackageId}{_deathCardCommitFunc}"),
+            new SerializableTypeTag[] { },
+            new TransactionArgument[]
+            {
+                    tx_block.AddObjectInput(_deathCardChestId),
+                    splitArgs[0],
+                    tx_block.AddPure(new Bytes(commitHash)),
+                    tx_block.AddPure(new U8(cardCount))
+            }
+        );
+        TransactionBlockResponseOptions transactionBlockResponseOptions = new TransactionBlockResponseOptions();
+        transactionBlockResponseOptions.ShowEvents = true;
+        transactionBlockResponseOptions.ShowBalanceChanges = true;
+        transactionBlockResponseOptions.ShowEffects = true;
+        transactionBlockResponseOptions.ShowObjectChanges = true;
+        RpcResult<TransactionBlockResponse> result_task = await _client.SignAndExecuteTransactionBlockAsync
+        (
+            tx_block,
+            _account,
+            transactionBlockResponseOptions
+        );
+
+        if (result_task.Error != null)
+        {
+            Debug.Log("PlayDeathCard Error => " + result_task.Error.Message);
+            return -1;
+        }
+
+        Debug.Log("finished");
+        return 1;
+
+    }
+
     async Task<int> PlayDeathCard(decimal amount, byte cardCount)
     {
         Debug.Log("Bet Amount => " + amount);
@@ -113,6 +178,8 @@ public class SuiManager : GenericSingleton<SuiManager>
         TransactionBlockResponseOptions transactionBlockResponseOptions = new TransactionBlockResponseOptions();
         transactionBlockResponseOptions.ShowEvents = true;
         transactionBlockResponseOptions.ShowBalanceChanges = true;
+        transactionBlockResponseOptions.ShowEffects = true;
+        transactionBlockResponseOptions.ShowObjectChanges = true;
         RpcResult<TransactionBlockResponse> result_task = await _client.SignAndExecuteTransactionBlockAsync
         (
             tx_block,

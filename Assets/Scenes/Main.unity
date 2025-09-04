@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eed3c974a3b81d4418dfba3b8fd2dbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathCardPackageId: 0xab225ee50e30554d6bf14b50af8125cc07b7637a21a877d30f20fecb8fa78097
-  _deathCardChestId: 0xbc530f33c7955b34c6dbacca0c668e0bc9ad939d92f9c0a03a230182c6d820d4
+  _deathCardPackageId: 0xd83656ac7864ec1581b1cc2b0ee37f0e6e7b95a27a2edfe7fe2d6d14927b1f51
+  _deathCardChestId: 0x3c0969b3cb5cd786d2699deff86b2ced88f94f589b11151ca9a937a408e9d355
   OnDeathCardStarted:
     m_PersistentCalls:
       m_Calls: []
