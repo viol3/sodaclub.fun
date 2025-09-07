@@ -153,11 +153,14 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         UpdateBalanceUI();
     }
 
-    void OnBalanceChanged(float addAmount)
+    void OnBalanceChanged(float addAmount, bool updateUI)
     {
         _balance += addAmount;
         _realBet += addAmount;
-        UpdateBalanceUI();
+        if(updateUI)
+        {
+            UpdateBalanceUI();
+        }
     }
 
     void OnDeathCardEnded(int diceValue)

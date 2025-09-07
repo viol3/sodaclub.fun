@@ -2,10 +2,7 @@ using Ali.Helper;
 using NBitcoin;
 using Newtonsoft.Json;
 using OpenDive.BCS;
-using Org.BouncyCastle.Ocsp;
 using Sui.Accounts;
-using Sui.Cryptography;
-using Sui.Cryptography.Ed25519;
 using Sui.Rpc;
 using Sui.Rpc.Client;
 using Sui.Rpc.Models;
@@ -19,7 +16,6 @@ using System.Numerics;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UIElements;
 
 public class SuiManager : GenericSingleton<SuiManager>
 {
@@ -43,7 +39,7 @@ public class SuiManager : GenericSingleton<SuiManager>
     [HideInInspector]
     public UnityEvent<float> OnBalanceUpdated = new UnityEvent<float>();
     [HideInInspector]
-    public UnityEvent<float> OnBalanceChanged = new UnityEvent<float>();
+    public UnityEvent<float, bool> OnBalanceChanged = new UnityEvent<float, bool>();
     private void Start()
     {
         _client = new SuiClient(Constants.TestnetConnection);
@@ -144,7 +140,7 @@ public class SuiManager : GenericSingleton<SuiManager>
         {
             BigInteger changeAmountBig = result_task.Result.BalanceChanges[0].Amount;
             float changeAmount = GetFloatFromBigInteger(changeAmountBig);
-            OnBalanceChanged?.Invoke(GetFloatFromBigInteger(result_task.Result.BalanceChanges[0].Amount));
+            OnBalanceChanged?.Invoke(GetFloatFromBigInteger(result_task.Result.BalanceChanges[0].Amount), false);
         }
 
         if (result_task.Result != null && result_task.Result.Effects != null && result_task.Result.Effects.Created.Length > 0)
@@ -196,7 +192,7 @@ public class SuiManager : GenericSingleton<SuiManager>
         {
             BigInteger changeAmountBig = result_task.Result.BalanceChanges[0].Amount;
             float changeAmount = GetFloatFromBigInteger(changeAmountBig);
-            OnBalanceChanged?.Invoke(GetFloatFromBigInteger(result_task.Result.BalanceChanges[0].Amount));
+            OnBalanceChanged?.Invoke(GetFloatFromBigInteger(result_task.Result.BalanceChanges[0].Amount), true);
         }
 
         try
