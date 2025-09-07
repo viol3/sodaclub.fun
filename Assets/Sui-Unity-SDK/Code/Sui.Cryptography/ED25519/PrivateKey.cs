@@ -24,7 +24,6 @@
 //
 
 using Chaos.NaCl;
-using Codice.CM.Common;
 using NBitcoin;
 using Sui.Rpc.Client;
 using Sui.Utilities;

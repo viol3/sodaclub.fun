@@ -3,7 +3,6 @@ using NBitcoin;
 using Newtonsoft.Json;
 using OpenDive.BCS;
 using Org.BouncyCastle.Ocsp;
-using SHA3.Net;
 using Sui.Accounts;
 using Sui.Cryptography;
 using Sui.Cryptography.Ed25519;
@@ -16,13 +15,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Net.Sockets;
 using System.Numerics;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
@@ -34,16 +28,10 @@ public class SuiManager : GenericSingleton<SuiManager>
 
     [SerializeField] private string _deathCardPackageId = "";
     [SerializeField] private string _deathCardChestId = "";
-    private string _deathCardModuleFunc = "::lucky_game::play";
     private string _deathCardCommitFunc = "::lucky_game::commit";
     private string _deathCardRevealFunc = "::lucky_game::reveal";
-    private string _deathCardTest0Func = "::lucky_game::test0";
-    private string _deathCardTest1Func = "::lucky_game::test1";
-    private string _deathCardTest2Func = "::lucky_game::test2";
-    private string _deathCardTest3Func = "::lucky_game::test3";
-    private string _deathCardTest5Func = "::lucky_game::test5";
-    private string _deathCardRollDiceFunc = "::lucky_game::rollDice";
     private string _randomPackageId = "0x8";
+    private string _clockPackageId = "0x6";
 
     SuiStructTag _sui_coin = new SuiStructTag("0x2::sui::SUI");
     SuiStructTag _coin = new SuiStructTag("0x2::coin::Coin");
@@ -106,7 +94,7 @@ public class SuiManager : GenericSingleton<SuiManager>
         return result;
     }
 
-    async Task<string> Commit(decimal amount, byte cardCount, byte[] commitHash)
+    async Task<string> Commit(decimal amount, byte cardCount)
     {
         Debug.Log("Bet Amount => " + amount);
         TransactionBlock tx_block = new TransactionBlock();
@@ -127,10 +115,10 @@ public class SuiManager : GenericSingleton<SuiManager>
             new SerializableTypeTag[] { },
             new TransactionArgument[]
             {
+                    tx_block.AddObjectInput(_randomPackageId),
                     tx_block.AddObjectInput(_deathCardChestId),
                     splitArgs[0],
-                    tx_block.AddPure(new Bytes(commitHash)),
-                    tx_block.AddPure(new U8(cardCount))
+                    tx_block.AddPure(new U8(cardCount)),
             }
         );
         TransactionBlockResponseOptions transactionBlockResponseOptions = new TransactionBlockResponseOptions();
@@ -169,7 +157,7 @@ public class SuiManager : GenericSingleton<SuiManager>
 
     }
 
-    async Task<int> Reveal(string ownedCommit, byte[] secret)
+    async Task<int> Reveal(string ownedCommit)
     {
         TransactionBlock tx_block = new TransactionBlock();
         //Debug.Log($"{_deathCardPackageId}{_deathCardRevealFunc}");
@@ -180,10 +168,8 @@ public class SuiManager : GenericSingleton<SuiManager>
             new SerializableTypeTag[] { },
             new TransactionArgument[]
             {
-                    tx_block.AddObjectInput(_randomPackageId),
-                    tx_block.AddObjectInput(_deathCardChestId),
-                    tx_block.AddObjectInput(ownedCommit),
-                    tx_block.AddPure(new Bytes(secret))
+                tx_block.AddObjectInput(_deathCardChestId),
+                tx_block.AddObjectInput(ownedCommit),  
             }
         );
 
@@ -236,15 +222,10 @@ public class SuiManager : GenericSingleton<SuiManager>
 
     async Task<int> PlayDeathCard(decimal amount, byte cardCount)
     {
-        System.Guid guid = new System.Guid();
-        byte[] secret = guid.ToByteArray();
-        byte[] computedHash = Sha3.Sha3256().ComputeHash(secret);
-        string ownedCommit = await Commit(amount, cardCount, computedHash);
-        //string ownedCommit = "0x707ec6f9bd23f16bd3c80505bda95079b19a0cb95e296dfcb9326169629759f2";
-        //Debug.Log("Got owned commit => " + ownedCommit);
+        string ownedCommit = await Commit(amount, cardCount);
         if (!string.IsNullOrEmpty(ownedCommit))
         {
-            int diceResult = await Reveal(ownedCommit, secret);
+            int diceResult = await Reveal(ownedCommit);
             return diceResult;
         }
         else

@@ -27,7 +27,6 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Sui.Accounts;
-using Unity.Plastic.Newtonsoft.Json.Linq;
 
 namespace Sui.Rpc.Models
 {
