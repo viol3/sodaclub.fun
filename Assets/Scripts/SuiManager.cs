@@ -13,6 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -40,14 +41,29 @@ public class SuiManager : GenericSingleton<SuiManager>
     public UnityEvent<float> OnBalanceUpdated = new UnityEvent<float>();
     [HideInInspector]
     public UnityEvent<float, bool> OnBalanceChanged = new UnityEvent<float, bool>();
+
+    [HideInInspector]
+    public UnityEvent<string, string> OnAccountInfoReceived = new UnityEvent<string, string>();
+
+    private string _accountPrivateKey;
+
     private void Start()
     {
         _client = new SuiClient(Constants.TestnetConnection);
-        _account = new Account("0xb1751db9ab3ce30b1253eeec9ad68cd4db7ef7008debcdc7beae68f222789303");
-        //Debug.Log(_account.PrivateKey.KeyHex);
-        Debug.Log(_account.SuiAddress().KeyHex);
+        _accountPrivateKey = PlayerPrefs.GetString("USER_ACCOUNT");
+        if (string.IsNullOrEmpty(_accountPrivateKey))
+        {
+            _account = new Account();
+            _accountPrivateKey = _account.PrivateKey.KeyHex;
+            PlayerPrefs.SetString("USER_ACCOUNT", _accountPrivateKey);
+        }
+        else
+        {
+            _account = new Account(_accountPrivateKey);
+            _accountPrivateKey = _account.PrivateKey.KeyHex;
+        }
+        OnAccountInfoReceived?.Invoke(_accountPrivateKey, _account.PublicKey.KeyHex);
         CheckBalance();
-        //Test();
     }
 
     //async void Test()

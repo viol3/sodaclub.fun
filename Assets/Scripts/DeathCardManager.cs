@@ -1,8 +1,11 @@
 using Ali.Helper;
 using Ali.Helper.Audio;
 using Ali.Helper.UI;
+using Cysharp.Threading.Tasks.Triggers;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows;
@@ -21,18 +24,38 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     [SerializeField] private Button _cashOutButton;
     [SerializeField] private Button _restartButton;
     [SerializeField] private DeathCardBetButton[] _betButtons;
-    private float _balance = 10f;
+    [SerializeField] private TMP_InputField _privateKeyInput;
+    [SerializeField] private TMP_InputField _publicKeyInput;
+    private float _balance = 0f;
     private float _realBet = 0.25f;
     private float _bet = 0.25f;
     private float _initialBet = 0.25f;
     private float _betFactor = 1f;
 
     private bool _over = false;
-
+    private bool _globalCardInput = true;
     private CardObject _clickedCard = null;
 
     private List<int> _normalCardIndices = new List<int>();
     // Start is called before the first frame update
+
+    protected override void Awake()
+    {
+        base.Awake();
+        SuiManager.Instance.OnDeathCardEnded.AddListener(OnDeathCardEnded);
+        SuiManager.Instance.OnBalanceUpdated.AddListener(OnBalanceUpdated);
+        SuiManager.Instance.OnBalanceChanged.AddListener(OnBalanceChanged);
+        SuiManager.Instance.OnAccountInfoReceived.AddListener(OnAccountInfoReceived);
+    }
+
+    private void OnDestroy()
+    {
+        SuiManager.Instance?.OnDeathCardEnded.RemoveListener(OnDeathCardEnded);
+        SuiManager.Instance?.OnBalanceUpdated.RemoveListener(OnBalanceUpdated);
+        SuiManager.Instance?.OnBalanceChanged.RemoveListener(OnBalanceChanged);
+        SuiManager.Instance?.OnAccountInfoReceived.RemoveListener(OnAccountInfoReceived);
+    }
+
     IEnumerator Start()
     {
         Init();
@@ -107,14 +130,16 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         {
             item.OnClick += OnCardClick;
         }
-
-        SuiManager.Instance.OnDeathCardEnded.AddListener(OnDeathCardEnded);
-        SuiManager.Instance.OnBalanceUpdated.AddListener(OnBalanceUpdated);
-        SuiManager.Instance.OnBalanceChanged.AddListener(OnBalanceChanged);
         UpdateBalanceUI();
         UpdateMultiplierText();
         UpdateBetText();
         _betButtons[0].OnClick();
+    }
+
+    void OnAccountInfoReceived(string privateKey, string publicKey)
+    {
+        _privateKeyInput.text = privateKey;
+        _publicKeyInput.text = publicKey;
     }
 
     void ResetSystem()
@@ -217,6 +242,15 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
 
     void OnCardClick(CardObject card)
     {
+        if(!_globalCardInput)
+        {
+            return;
+        }
+        if(_realBet + 0.01f > _balance)
+        {
+            MessageBox.Instance.Show("Your balance is insufficient for the minimum transaction.");
+            return;
+        }
         int closedCardCount = _deck.GetClosedCardCount();
         SuiManager.Instance.DeathCard(_realBet, (byte)closedCardCount);
         _clickedCard = card;
@@ -228,6 +262,21 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
             _betPanel.gameObject.SetActive(false);
             _tutorialPanel.gameObject.SetActive(false);
         }
+    }
+
+    public bool IsGlobalCardInputEnabled()
+    {
+        return _globalCardInput;
+    }
+
+    public void OnSettingsOpened()
+    {
+        _globalCardInput = false;
+    }
+
+    public void OnSettingsClosed()
+    {
+        _globalCardInput = true;
     }
 
     public void OnRestartButtonClick()
