@@ -62,14 +62,9 @@ public class SuiManager : GenericSingleton<SuiManager>
             _account = new Account(_accountPrivateKey);
             _accountPrivateKey = _account.PrivateKey.KeyHex;
         }
-        OnAccountInfoReceived?.Invoke(_accountPrivateKey, _account.PublicKey.KeyHex);
+        OnAccountInfoReceived?.Invoke(_accountPrivateKey, _account.SuiAddress().KeyHex);
         CheckBalance();
     }
-
-    //async void Test()
-    //{
-        
-    //}
 
     float GetFloatFromBigInteger(BigInteger value)
     {
@@ -77,12 +72,66 @@ public class SuiManager : GenericSingleton<SuiManager>
         return (float)suiValue;
     }
 
+    public IEnumerator FaucetProcess()
+    {
+        yield return new WaitForSeconds(1f);
+        Task faucetTask = Faucet();
+        yield return new WaitUntil(() => faucetTask.IsCompleted || faucetTask.IsFaulted || faucetTask.IsCanceled);
+        yield return null;
+    }
+
+    async Task Faucet()
+    {
+        try
+        {
+            var faucet = new Sui.Clients.FaucetClient(Constants.TestnetConnection);
+            bool success = await faucet.AirdropGasAsync(_account.SuiAddress());
+            if (success)
+            {
+                await CheckBalance();
+            }
+            else
+            {
+                MessageBox.Instance.Show("Faucet request failed. Try again later.");
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Instance.Show("Error while requesting faucet : " + ex.Message);
+        }
+
+        
+    }
+
     async Task CheckBalance()
     {
-        RpcResult<Balance> result = await _client.GetBalanceAsync(_account);
-        BigInteger balance = result.Result.TotalBalance;
-        decimal suiBalance = (decimal)balance / 1_000_000_000m;
-        OnBalanceUpdated?.Invoke((float)suiBalance);
+        try
+        {
+            RpcResult<Balance> result = await _client.GetBalanceAsync(_account);
+            BigInteger balance = result.Result.TotalBalance;
+            decimal suiBalance = (decimal)balance / 1_000_000_000m;
+            OnBalanceUpdated?.Invoke((float)suiBalance);
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Instance.Show("Error while updating balance : " + ex.Message);
+        }
+    }
+
+    public IEnumerator RefreshProcess()
+    {
+        yield return new WaitForSeconds(1f);
+        Task balanceTask = CheckBalance();
+        yield return new WaitUntil(() => balanceTask.IsCompleted || balanceTask.IsFaulted || balanceTask.IsCanceled);
+        yield return null;
+    }
+
+    public void ResetAccount()
+    {
+        _account = new Account();
+        _accountPrivateKey = _account.PrivateKey.KeyHex;
+        PlayerPrefs.SetString("USER_ACCOUNT", _accountPrivateKey);
+        OnAccountInfoReceived?.Invoke(_accountPrivateKey, _account.SuiAddress().KeyHex);
     }
 
     public async void DeathCard(float betAmount, byte cardCount)

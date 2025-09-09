@@ -1,6 +1,7 @@
 using Ali.Helper;
 using Ali.Helper.Audio;
 using Ali.Helper.UI;
+using Ali.Helper.World;
 using Cysharp.Threading.Tasks.Triggers;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
 {
     [SerializeField] private Vector3[] _cardPositions;
     [Space]
+    [SerializeField] private ScaleAnimationLoop _faucetAnimation;
+    [SerializeField] private Rotator _balanceRefreshRotator;
     [SerializeField] private RectTransform _betPanel;
     [SerializeField] private RectTransform _tutorialPanel;
     [SerializeField] private CurrencyPanel _currencyPanel;
@@ -31,6 +34,9 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     private float _bet = 0.25f;
     private float _initialBet = 0.25f;
     private float _betFactor = 1f;
+
+    private bool _refreshingBalance = false;
+    private bool _faucetting = false;
 
     private bool _over = false;
     private bool _globalCardInput = true;
@@ -277,6 +283,47 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     public void OnSettingsClosed()
     {
         _globalCardInput = true;
+    }
+
+    public void OnFaucetButtonClick()
+    {
+        if(_faucetting)
+        {
+            return;
+        }
+        _faucetting = true;
+        StartCoroutine(FaucetProcess());
+    }
+
+    IEnumerator FaucetProcess()
+    {
+        _faucetAnimation.enabled = true;
+        yield return SuiManager.Instance.FaucetProcess();
+        _faucetAnimation.enabled = false;
+        _faucetting = false;
+    }
+
+    public void OnRefreshButtonClick()
+    {
+        if(_refreshingBalance)
+        {
+            return;
+        }
+        _refreshingBalance = true;
+        StartCoroutine(RefreshProcess());
+    }
+
+    IEnumerator RefreshProcess()
+    {
+        _balanceRefreshRotator.enabled = true;
+        yield return SuiManager.Instance.RefreshProcess();
+        _balanceRefreshRotator.enabled = false;
+        _refreshingBalance = false;
+    }
+
+    public void OnResetAccountButtonClick()
+    {
+
     }
 
     public void OnRestartButtonClick()
