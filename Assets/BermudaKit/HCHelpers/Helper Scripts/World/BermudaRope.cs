@@ -27,8 +27,8 @@ namespace Ali.Helper.World
             SphereCollider collider = node.gameObject.AddComponent<SphereCollider>();
             collider.radius = 0.1f;
             nodeRB.mass = 0.1f;
-            nodeRB.drag = 0.2f;
-            nodeRB.angularDrag = 0.2f;
+            nodeRB.linearDamping = 0.2f;
+            nodeRB.angularDamping = 0.2f;
             //nodeRB.constraints = RigidbodyConstraints.FreezeRotationY;
             if (node.childCount > 0 && node != _tailNode)
             {

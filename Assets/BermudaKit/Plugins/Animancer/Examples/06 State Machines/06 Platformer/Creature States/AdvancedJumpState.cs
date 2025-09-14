@@ -42,7 +42,7 @@ namespace Animancer.Examples.StateMachines.Platformer
             base.FixedUpdate();
 
             if (IsHolding && AnimancerState.Time <= _HoldDuration)
-                Creature.Rigidbody.velocity += new Vector2(0, _HoldForce * Time.deltaTime);
+                Creature.Rigidbody.linearVelocity += new Vector2(0, _HoldForce * Time.deltaTime);
         }
 
         /************************************************************************************************************************/

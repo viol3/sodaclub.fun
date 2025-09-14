@@ -23,7 +23,7 @@ namespace Ali.Helper.Runner
 
         public override void ProcessVelocity(Vector3 velocity)
         {
-            _rigidbody.velocity = velocity;
+            _rigidbody.linearVelocity = velocity;
         }
 
         void Update()
@@ -38,11 +38,11 @@ namespace Ali.Helper.Runner
                 return;
             }
 
-            if(_rigidbody.velocity == Vector3.zero)
+            if(_rigidbody.linearVelocity == Vector3.zero)
             {
                 return;
             }
-            Vector3 eulerAngles = GameUtility.GetLookAtEulerAngles(Vector3.zero, _rigidbody.velocity);
+            Vector3 eulerAngles = GameUtility.GetLookAtEulerAngles(Vector3.zero, _rigidbody.linearVelocity);
             eulerAngles.x = _modelTransform.eulerAngles.x;
             eulerAngles.z = _modelTransform.eulerAngles.z;
             _modelTransform.eulerAngles = new Vector3(eulerAngles.x, Mathf.LerpAngle(_modelTransform.eulerAngles.y, eulerAngles.y, _rotateSpeed * Time.deltaTime));
@@ -50,7 +50,7 @@ namespace Ali.Helper.Runner
 
         public void Stop()
         {
-            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.linearVelocity = Vector3.zero;
         }
     }
 }

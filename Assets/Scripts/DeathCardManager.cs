@@ -10,6 +10,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows;
+using static System.Net.Mime.MediaTypeNames;
 
 public class DeathCardManager : LocalSingleton<DeathCardManager>
 {
@@ -36,7 +37,6 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     private float _betFactor = 1f;
 
     private bool _refreshingBalance = false;
-    private bool _faucetting = false;
 
     private bool _over = false;
     private bool _globalCardInput = true;
@@ -287,20 +287,7 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
 
     public void OnFaucetButtonClick()
     {
-        if(_faucetting)
-        {
-            return;
-        }
-        _faucetting = true;
-        StartCoroutine(FaucetProcess());
-    }
-
-    IEnumerator FaucetProcess()
-    {
-        _faucetAnimation.enabled = true;
-        yield return SuiManager.Instance.FaucetProcess();
-        _faucetAnimation.enabled = false;
-        _faucetting = false;
+        SuiManager.OpenURL("https://faucet.sui.io");
     }
 
     public void OnRefreshButtonClick()
@@ -323,7 +310,17 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
 
     public void OnResetAccountButtonClick()
     {
+        SuiManager.Instance.ResetAccount();
+    }
 
+    public void OnCopyClipboardPublicKeyClicked()
+    {
+        WebGLCopyAndPaste.WebGLCopyAndPasteAPI.CopyToClipboard(_publicKeyInput.text);
+    }
+
+    public void OnCopyClipboardPrivateKeyClicked()
+    {
+        WebGLCopyAndPaste.WebGLCopyAndPasteAPI.CopyToClipboard(_privateKeyInput.text);
     }
 
     public void OnRestartButtonClick()

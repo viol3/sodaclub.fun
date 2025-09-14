@@ -100,7 +100,7 @@ namespace Animancer.Examples.DirectionalSprites
         {
             // Determine the desired speed based on the current animation.
             var speed = _CurrentAnimationSet == _Run ? _RunSpeed : _WalkSpeed;
-            _Rigidbody.velocity = _Movement * speed;
+            _Rigidbody.linearVelocity = _Movement * speed;
         }
 
         /************************************************************************************************************************/

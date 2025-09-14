@@ -84,7 +84,7 @@ namespace Animancer.Examples.StateMachines.Platformer
         private void FixedUpdate()
         {
             var speed = StateMachine.CurrentState.MovementSpeed * _Brain.MovementDirection;
-            _Rigidbody.velocity = new Vector2(speed, _Rigidbody.velocity.y);
+            _Rigidbody.linearVelocity = new Vector2(speed, _Rigidbody.linearVelocity.y);
 
             // The sprites face right by default, so flip the X axis when moving left.
             if (speed != 0)

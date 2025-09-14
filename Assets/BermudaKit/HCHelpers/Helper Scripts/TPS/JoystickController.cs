@@ -47,7 +47,7 @@ public class JoystickController : LocalSingleton<JoystickController>
         if (!_wasd && Mathf.Abs(inputDirection.x) < 0.1f && Mathf.Abs(inputDirection.y) < 0.1f)
         {
             _targetVelocity = Vector3.zero;
-            _rigidbody.velocity = _targetVelocity;
+            _rigidbody.linearVelocity = _targetVelocity;
             return;
         }
         Vector3 direction = new Vector3(inputDirection.x, 0f, inputDirection.y);
@@ -65,13 +65,13 @@ public class JoystickController : LocalSingleton<JoystickController>
             return;
         }
 
-        _rigidbody.velocity = Vector3.Lerp(_rigidbody.velocity, _targetVelocity, Time.deltaTime * _moveLerpSpeed);
+        _rigidbody.linearVelocity = Vector3.Lerp(_rigidbody.linearVelocity, _targetVelocity, Time.deltaTime * _moveLerpSpeed);
     }
 
     public void SetEnabled(bool value)
     {
         _enabled = value;
-        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.linearVelocity = Vector3.zero;
     }
 
     public Joystick GetJoystick()
@@ -86,7 +86,7 @@ public class JoystickController : LocalSingleton<JoystickController>
 
     public Vector3 GetVelocity()
     {
-        return _rigidbody.velocity;
+        return _rigidbody.linearVelocity;
     }
 
     public void SetSpeed(float value)

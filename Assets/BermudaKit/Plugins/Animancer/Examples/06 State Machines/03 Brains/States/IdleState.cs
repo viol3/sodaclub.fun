@@ -37,7 +37,7 @@ namespace Animancer.Examples.StateMachines.Brains
         /// </remarks>
         private void FixedUpdate()
         {
-            Creature.Rigidbody.velocity = Vector3.zero;
+            Creature.Rigidbody.linearVelocity = Vector3.zero;
         }
 
         /************************************************************************************************************************/

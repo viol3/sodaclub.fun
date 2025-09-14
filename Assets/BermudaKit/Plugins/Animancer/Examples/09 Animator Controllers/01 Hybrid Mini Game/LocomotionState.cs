@@ -104,7 +104,7 @@ namespace Animancer.Examples.AnimatorControllers
 
             var speed = Creature.Stats.GetMoveSpeed(Creature.Brain.IsRunning);
 
-            Creature.Rigidbody.velocity = direction * speed;
+            Creature.Rigidbody.linearVelocity = direction * speed;
         }
 
         /************************************************************************************************************************/

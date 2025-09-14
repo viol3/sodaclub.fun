@@ -65,7 +65,7 @@ namespace Animancer.Examples.StateMachines.Weapons
 
         private void FixedUpdate()
         {
-            Creature.Rigidbody.velocity = Vector3.zero;
+            Creature.Rigidbody.linearVelocity = Vector3.zero;
         }
 
         /************************************************************************************************************************/

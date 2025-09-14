@@ -104,7 +104,7 @@ namespace Animancer.Examples.AnimatorControllers
             MovementDirection = _GolfHitController.transform.forward;
 
             // Disable the Creature's movement and move them next to the golf ball.
-            Creature.Rigidbody.velocity = Vector3.zero;
+            Creature.Rigidbody.linearVelocity = Vector3.zero;
             Creature.Rigidbody.isKinematic = true;
             Creature.Rigidbody.position = _GolfHitController.transform.position;
         }

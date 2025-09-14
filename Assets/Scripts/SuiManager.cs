@@ -14,7 +14,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -65,6 +67,9 @@ public class SuiManager : GenericSingleton<SuiManager>
         OnAccountInfoReceived?.Invoke(_accountPrivateKey, _account.SuiAddress().KeyHex);
         CheckBalance();
     }
+
+    [DllImport("__Internal")]
+    public static extern void OpenURL(string url);
 
     float GetFloatFromBigInteger(BigInteger value)
     {

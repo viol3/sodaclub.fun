@@ -159,7 +159,7 @@ namespace Animancer.Examples.Events
             _Ball.isKinematic = false;
 
             // In a real golf game you would probably calculate the hit velocity based on player input.
-            _Ball.velocity = _HitVelocity;
+            _Ball.linearVelocity = _HitVelocity;
 
             _HitSound.Play();
         }
