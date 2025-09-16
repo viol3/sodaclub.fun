@@ -5,6 +5,8 @@ All game logic (bets, randomness, payouts) is handled on-chain with Move smart c
 
 You can play in testnet : https://sodaclub.vercel.app
 
+https://github.com/user-attachments/assets/3aeff39a-7c53-43a9-bb47-d581dd4f862b
+
 🚀 <b>Features</b>
 
 🎴 On-Chain Card Game – Commit & reveal mechanism prevents manipulation.<br/>
