@@ -3,6 +3,8 @@
 SodaClub.fun is a fully serverless, blockchain-powered card game built on Sui.
 All game logic (bets, randomness, payouts) is handled on-chain with Move smart contracts, and the Unity frontend communicates directly with the blockchain.
 
+You can play in testnet : https://sodaclub.vercel.app
+
 🚀 <b>Features</b>
 
 🎴 On-Chain Card Game – Commit & reveal mechanism prevents manipulation.<br/>
