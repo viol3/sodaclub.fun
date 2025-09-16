@@ -106,8 +106,7 @@ sui client faucet
 <br/>
 🎨 Assets & Credits
 <br/>
-- Card Images → MidJourney<br/>
-- 3D Assets → Quaternius<br/>
+- Card Images → Midjourney, quaternius.com<br/>
 - Sound Effects → Freesound<br/>
 <br/>
 📬 Contact
