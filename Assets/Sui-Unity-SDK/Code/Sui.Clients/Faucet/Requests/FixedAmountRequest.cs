@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 //
 
+
 using Newtonsoft.Json;
 
 namespace Sui.Clients.Faucet.Request

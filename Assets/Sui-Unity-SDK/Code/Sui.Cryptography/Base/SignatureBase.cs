@@ -26,7 +26,6 @@
 using System;
 using System.Linq;
 using Chaos.NaCl;
-using Sui.Rpc.Client;
 using Sui.Utilities;
 
 namespace Sui.Cryptography

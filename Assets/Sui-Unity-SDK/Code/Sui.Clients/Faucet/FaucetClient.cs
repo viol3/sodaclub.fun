@@ -26,11 +26,11 @@
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Sui.Accounts;
 using Sui.Clients.Faucet.Request;
 using Sui.Cryptography;
 using Sui.Rpc;
+using Newtonsoft.Json;
 
 namespace Sui.Clients
 {

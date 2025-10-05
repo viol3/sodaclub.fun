@@ -28,9 +28,7 @@ using Chaos.NaCl;
 using Sui.Cryptography;
 using Sui.Utilities;
 using OpenDive.BCS;
-using Sui.Rpc.Client;
 using System.Linq;
-using UnityEngine;
 
 namespace Sui.Accounts
 {
@@ -165,6 +163,7 @@ namespace Sui.Accounts
 
                 if (this.CheckIfKeyIsExactLength(key_value) == false)
                     return;
+
                 this._key_hex = account_address;
             }
             else if (Utils.IsBase64String(account_address))

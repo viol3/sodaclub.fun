@@ -88,13 +88,13 @@
             sage: for t in xrange(1023, -1, -1):
                ..   p = 2**256 - 2**32 - t
                ..   if p.is_prime():
-               ..     print '%x'%p
+               ..     print "%x'%p
                ..     break
              'fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f'
             sage: a = 0
             sage: b = 7
             sage: F = FiniteField (p)
-            sage: '%x' % (EllipticCurve ([F (a), F (b)]).order())
+            sage: "%x' % (EllipticCurve ([F (a), F (b)]).order())
              'fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141'
         </member>
         <member name="F:NBitcoin.Secp256k1.ECPubKey.p_minus_order">
@@ -104,7 +104,7 @@
             sage: a = 0
             sage: b = 7
             sage: F = FiniteField (p)
-            sage: '%x' % (p - EllipticCurve ([F (a), F (b)]).order())
+            sage: "%x' % (p - EllipticCurve ([F (a), F (b)]).order())
              '14551231950b75fc4402da1722fc9baee'
         </member>
         <member name="M:NBitcoin.Secp256k1.ECPubKey.TryCombine(NBitcoin.Secp256k1.Context,System.Collections.Generic.IEnumerable{NBitcoin.Secp256k1.ECPubKey},NBitcoin.Secp256k1.ECPubKey@)">

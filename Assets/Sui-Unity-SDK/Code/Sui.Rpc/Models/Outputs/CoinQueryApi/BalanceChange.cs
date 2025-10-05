@@ -25,7 +25,6 @@
 
 using System.Numerics;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Sui.Types;
 
 namespace Sui.Rpc.Models

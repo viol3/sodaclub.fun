@@ -36,7 +36,6 @@ using Chaos.NaCl;
 using Sui.Utilities;
 using Sui.Types;
 using Sui.Clients.Api;
-using System.Diagnostics;
 
 namespace Sui.Rpc.Client
 {
@@ -666,19 +665,14 @@ namespace Sui.Rpc.Client
             byte[] tx_bytes = await transaction_block.Build(new BuildOptions(this));
 
             if (transaction_block.Error != null)
-            {
-                //SuiMoveNormalizedType error = (SuiMoveNormalizedType)transaction_block.Error.Data;
                 return RpcResult<TransactionBlockResponse>.GetErrorResult(transaction_block.Error.Message);
-            }  
 
             SignatureBase signature = account.SignTransactionBlock(tx_bytes);
             SuiResult<string> signature_result = account.ToSerializedSignature(signature);
 
             if (signature_result.Error != null)
-            {
                 return RpcResult<TransactionBlockResponse>.GetErrorResult(signature_result.Error.Message);
-            }
-                
+
             return await this.ExecuteTransactionBlockAsync
             (
                 tx_bytes,

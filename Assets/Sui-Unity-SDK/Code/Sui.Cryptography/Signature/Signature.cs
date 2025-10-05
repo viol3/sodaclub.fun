@@ -25,7 +25,7 @@
 
 namespace Sui.Cryptography
 {
-    public class Signature : Sui.Cryptography.SignatureBase
+    public class Signature : SignatureBase
     {
         public Signature(string signature) : base(signature) { }
 

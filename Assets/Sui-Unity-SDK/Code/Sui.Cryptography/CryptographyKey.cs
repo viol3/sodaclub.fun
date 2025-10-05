@@ -28,6 +28,7 @@ using System.Linq;
 
 namespace Sui.Cryptography
 {
+    // TODO: FOR MARCUS -- What does this do? Why is this needed if public keys can already check themselves.
     public abstract class CryptographyKey : ReturnBase
     {
         /// <summary>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>SauceControl.Blake2Fast</id>
+    <version>2.0.0</version>
+    <title>High-Performance BLAKE2 Hashing for .NET</title>
+    <authors>Clinton Ingram</authors>
+    <owners>saucecontrol</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>package/SauceControl.png</icon>
+    <projectUrl>https://github.com/saucecontrol/Blake2Fast</projectUrl>
+    <description>Optimized implementations of the BLAKE2b and BLAKE2s cryptographic hashing algorithms. Uses SSE2-SSE4.1 Hardware Intrinsics support on .NET Core 2.1+ and AVX2 on .NET Core 3+</description>
+    <summary>High-Performance BLAKE2 Hashing for .NET</summary>
+    <releaseNotes>See https://github.com/saucecontrol/Blake2Fast/releases for release-specific notes.</releaseNotes>
+    <copyright>Copyright © 2018-2020 Clinton Ingram</copyright>
+    <tags>BLAKE2 Hash BLAKE2b BLAKE2s SSE2 AVX2 SIMD HashAlgorithm HMAC Cryptography</tags>
+    <repository type="git" url="https://github.com/saucecontrol/Blake2Fast" commit="65d658ffc4b87a0f3cd5c379ed2f2a2a771c0986" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="System.Buffers" version="4.5.1" exclude="Build,Analyzers" />
+        <dependency id="System.Memory" version="4.5.4" exclude="Build,Analyzers" />
+        <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.5.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard1.1">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+        <dependency id="System.Buffers" version="4.5.1" exclude="Build,Analyzers" />
+        <dependency id="System.Memory" version="4.5.4" exclude="Build,Analyzers" />
+        <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.5.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard1.3">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+        <dependency id="System.Buffers" version="4.5.1" exclude="Build,Analyzers" />
+        <dependency id="System.Memory" version="4.5.4" exclude="Build,Analyzers" />
+        <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.5.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETCoreApp2.1">
+        <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.7.1" exclude="Build,Analyzers" />
+        <dependency id="System.Runtime.Intrinsics.Experimental" version="4.5.0-rc1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETCoreApp3.0" />
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="System.Buffers" version="4.5.1" exclude="Build,Analyzers" />
+        <dependency id="System.Memory" version="4.5.4" exclude="Build,Analyzers" />
+        <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.5.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.7.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

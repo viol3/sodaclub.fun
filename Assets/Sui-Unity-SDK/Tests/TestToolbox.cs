@@ -30,7 +30,6 @@ using Sui.Rpc;
 using Sui.Clients;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
 using System.IO;
 using Sui.Rpc.Client;
 using System.Linq;
@@ -41,6 +40,7 @@ using OpenDive.BCS;
 using Sui.Utilities;
 using Sui.Types;
 using Sui.Transactions;
+using Newtonsoft.Json.Linq;
 
 namespace Sui.Tests
 {

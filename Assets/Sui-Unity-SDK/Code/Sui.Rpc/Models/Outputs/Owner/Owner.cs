@@ -24,7 +24,6 @@
 //
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Sui.Accounts;
 using Sui.Utilities;
 

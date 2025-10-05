@@ -24,12 +24,12 @@
 //
 
 using Org.BouncyCastle.Crypto.Digests;
-using Newtonsoft.Json;
 using OpenDive.BCS;
 using Sui.Cryptography;
 using Sui.Rpc.Models;
 using Sui.Utilities;
 using static Sui.Cryptography.SignatureUtils;
+using Newtonsoft.Json;
 
 namespace Sui.Accounts
 {

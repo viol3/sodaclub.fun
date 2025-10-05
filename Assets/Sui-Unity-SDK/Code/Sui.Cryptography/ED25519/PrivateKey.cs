@@ -23,12 +23,10 @@
 //  THE SOFTWARE.
 //
 
+using System;
 using Chaos.NaCl;
 using NBitcoin;
-using Sui.Rpc.Client;
 using Sui.Utilities;
-using System;
-using UnityEngine;
 using static Sui.Cryptography.SignatureUtils;
 
 namespace Sui.Cryptography.Ed25519
@@ -69,7 +67,6 @@ namespace Sui.Cryptography.Ed25519
                         string key = this._key_base64;
                         byte[] seed = CryptoBytes.FromBase64String(key);
                         this._key_bytes = seed;
-                        
                     }
                     this._extended_key_bytes = Chaos.NaCl.Ed25519.ExpandedPrivateKeyFromSeed(this._key_bytes);
                 }

@@ -483,9 +483,13 @@ namespace Sui.Transactions
         public async Task<byte[]> Build(BuildOptions build_options)
         {
             await this.Prepare(build_options);
-
+            
             if (this.Error != null)
+            {
+                UnityEngine.Debug.LogError(this.Error.Message);
                 return null;
+            }
+                
 
             byte[] build_result = this.BlockDataBuilder.Build(null, build_options.OnlyTransactionKind);
 
@@ -832,6 +836,7 @@ namespace Sui.Transactions
                             continue;
                         }
 
+                        // If the input value is a string, we need to resolve it (it's an object ID).
                         if (input_value.GetType() == typeof(BString))
                         {
                             objects_to_resolve.Add(new ObjectToResolve(((BString)input_value).Value, input, param_enumerated.Item2));
@@ -845,7 +850,6 @@ namespace Sui.Transactions
                             return;
                         }
 
-                        // If the input value is a string, we need to resolve it (it's an object ID).
                         
 
                         this.SetError<SuiError>("Input Value Is Not Object ID.", input_value);
@@ -1039,7 +1043,6 @@ namespace Sui.Transactions
 
                 if (protocol_config.Error != null)
                 {
-                    UnityEngine.Debug.Log("Protocol error");
                     this.SetError<RpcError>(protocol_config.Error.Message);
                     return;
                 }

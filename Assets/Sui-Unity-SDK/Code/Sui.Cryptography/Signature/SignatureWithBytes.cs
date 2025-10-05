@@ -27,6 +27,7 @@ namespace Sui.Cryptography
 {
     /// <summary>
     /// The signature with bytes.
+    /// TODO: FOR MARCUS -- This looks like another useless class. Why can't the Signature class hold it's own bytes? In fact it already does.
     /// </summary>
     public class SignatureWithBytes
     {

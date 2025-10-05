@@ -304,8 +304,15 @@ namespace Sui.Tests.Cryptography
                 string sui_address = TestValues.TestCases[i].Item3;
 
                 PublicKey public_key = new PublicKey(raw_public_key);
-                Assert.AreEqual(sui_address, public_key.ToSuiAddress(), "---- \n" + public_key.ToSuiBytes().ToReadableString() + "\n" + public_key.ToSuiAddress());
+                Assert.AreEqual(sui_address, public_key.ToSuiAddress().ToHex(), "---- \n" + public_key.ToSuiBytes().ToReadableString() + "\n" + public_key.ToSuiAddress());
             }
+        }
+
+        [Test]
+        // TODO: Implement PublicKey toSuiBytes test
+        public void PublicKeySuiBytes()
+        {
+            throw new System.NotImplementedException();
         }
 
         [Test]

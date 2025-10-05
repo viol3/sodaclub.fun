@@ -38,7 +38,7 @@ namespace Sui.Rpc.Models
         {
             if (reader.TokenType == JsonToken.StartObject)
             {
-                Newtonsoft.Json.Linq.JObject owner_object = Newtonsoft.Json.Linq.JObject.Load(reader);
+                JObject owner_object = JObject.Load(reader);
                 if (owner_object.ContainsKey(SuiOwnerType.Shared.ToString()))
                 {
                     return new Owner(owner_object[SuiOwnerType.Shared.ToString()][this.InitialSharedVersion].Value<int>());

@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 //
 
+using System.Numerics;
 using NUnit.Framework;
 
 namespace Sui.Tests.Cryptography
@@ -48,6 +49,28 @@ namespace Sui.Tests.Cryptography
             Assert.AreEqual(false, isValidHex1);
             bool isValidHex2 = Utilities.Utils.IsValidHexKey(invalidPkHex2);
             Assert.AreEqual(false, isValidHex2);
+        }
+
+        [Test]
+        public void HexToBytes_ShouldConvertCorrectly()
+        {
+            // Test case 1: Normal hex string
+            CollectionAssert.AreEqual(
+                new byte[] { 255, 255 },
+                Utilities.Utils.HexStringToByteArray("FFFF")
+            );
+
+            // Test case 2: Hex string with leading zeros
+            CollectionAssert.AreEqual(
+                new byte[] { 0, 255, 255 },
+                Utilities.Utils.HexStringToByteArray("00FFFF")
+            );
+
+            // Test case 3: Single byte hex
+            CollectionAssert.AreEqual(
+                new byte[] { 255 },
+                Utilities.Utils.HexStringToByteArray("FF")
+            );
         }
     }
 }

@@ -63,7 +63,6 @@ public class SuiManager : GenericSingleton<SuiManager>
         {
             _account = new Account(_accountPrivateKey);
             _accountPrivateKey = _account.PrivateKey.KeyHex;
-            Debug.Log(_account.PublicKey.ToSuiPublicKey());
         }
         OnAccountInfoReceived?.Invoke(_accountPrivateKey, _account.SuiAddress().KeyHex);
         CheckBalance();
@@ -163,7 +162,6 @@ public class SuiManager : GenericSingleton<SuiManager>
 
     async Task<string> Commit(decimal amount, byte cardCount)
     {
-        Debug.Log("Bet Amount => " + amount);
         TransactionBlock tx_block = new TransactionBlock();
         ulong requestedAmountLong = (ulong)(amount * 1_000_000_000m);
         List<TransactionArgument> splitArgs = tx_block.AddMoveCallTx

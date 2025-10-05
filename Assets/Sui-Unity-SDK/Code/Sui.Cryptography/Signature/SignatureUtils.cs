@@ -27,7 +27,6 @@ using System;
 using System.Collections.Generic;
 using Chaos.NaCl;
 using System.Linq;
-using Sui.Rpc.Client;
 using Sui.Utilities;
 using static Sui.Cryptography.SignatureUtils;
 
@@ -48,7 +47,7 @@ namespace Sui.Cryptography
             Secp256k1,
             Secp256r1,
             MultiSig,
-            Zk
+            ZkLogin
         }
 
         /// <summary>
@@ -159,7 +158,7 @@ namespace Sui.Cryptography
                     )
                 );
 
-            if (signature_scheme == SignatureScheme.Zk)
+            if (signature_scheme == SignatureScheme.ZkLogin)
                 return new SuiResult<ParsedSignatureOutput>
                 (
                     null,
@@ -209,7 +208,7 @@ namespace Sui.Cryptography
             { SignatureScheme.Secp256k1,    0x01 },
             { SignatureScheme.Secp256r1,    0x02 },
             { SignatureScheme.MultiSig,     0x03 },
-            { SignatureScheme.Zk,           0x05 }
+            { SignatureScheme.ZkLogin,      0x05 }
         };
 
         /// <summary>
@@ -239,8 +238,8 @@ namespace Sui.Cryptography
         /// <summary>
         /// Represents the flag for the zkLogin signature scheme.
         /// </summary>
-        public static byte Zk
-            => SignatureSchemeToFlag._signature_scheme_to_flag[SignatureScheme.Zk];
+        public static byte ZkLogin
+            => SignatureSchemeToFlag._signature_scheme_to_flag[SignatureScheme.ZkLogin];
 
         /// <summary>
         /// Returns the byte flag that matches the signature scheme.
@@ -265,7 +264,7 @@ namespace Sui.Cryptography
             { SignatureScheme.Secp256k1,    33 },
             { SignatureScheme.Secp256r1,    33 },
             { SignatureScheme.MultiSig,     32 },
-            { SignatureScheme.Zk,           32 }
+            { SignatureScheme.ZkLogin,      32 }
         };
 
         /// <summary>
@@ -296,7 +295,7 @@ namespace Sui.Cryptography
         /// Represents the size of the zkLogin signature in bytes.
         /// </summary>
         public static int Zk
-            => SignatureSchemeToSize._signature_scheme_to_size[SignatureScheme.Zk];
+            => SignatureSchemeToSize._signature_scheme_to_size[SignatureScheme.ZkLogin];
 
         /// <summary>
         /// Returns the size of signature based on particular signature scheme.
@@ -322,7 +321,7 @@ namespace Sui.Cryptography
             { 0x01, SignatureScheme.Secp256k1 },
             { 0x02, SignatureScheme.Secp256r1 },
             { 0x03, SignatureScheme.MultiSig },
-            { 0x05, SignatureScheme.Zk }
+            { 0x05, SignatureScheme.ZkLogin }
         };
 
         /// <summary>

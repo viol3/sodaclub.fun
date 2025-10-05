@@ -462,12 +462,12 @@
         </member>
         <member name="P:Microsoft.Extensions.Logging.Abstractions.Resource.UnexpectedNumberOfNamedParameters">
             <summary>
-            The format string '{0}' does not have the expected number of named parameters. Expected {1} parameter(s) but found {2} parameter(s).
+            The format string "{0}" does not have the expected number of named parameters. Expected {1} parameter(s) but found {2} parameter(s).
             </summary>
         </member>
         <member name="M:Microsoft.Extensions.Logging.Abstractions.Resource.FormatUnexpectedNumberOfNamedParameters(System.Object,System.Object,System.Object)">
             <summary>
-            The format string '{0}' does not have the expected number of named parameters. Expected {1} parameter(s) but found {2} parameter(s).
+            The format string "{0}" does not have the expected number of named parameters. Expected {1} parameter(s) but found {2} parameter(s).
             </summary>
         </member>
     </members>
