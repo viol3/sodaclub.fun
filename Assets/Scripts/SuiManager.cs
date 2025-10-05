@@ -63,6 +63,7 @@ public class SuiManager : GenericSingleton<SuiManager>
         {
             _account = new Account(_accountPrivateKey);
             _accountPrivateKey = _account.PrivateKey.KeyHex;
+            Debug.Log(_account.PublicKey.ToSuiPublicKey());
         }
         OnAccountInfoReceived?.Invoke(_accountPrivateKey, _account.SuiAddress().KeyHex);
         CheckBalance();
