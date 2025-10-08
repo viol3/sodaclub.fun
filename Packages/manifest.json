@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+    "com.opendive.sui-unity-sdk": "https://github.com/viol3/Sui-Unity-SDK.git?path=/Assets/Sui-Unity-SDK#zk-login",
     "com.unity.collab-proxy": "2.9.2",
     "com.unity.feature.2d": "2.0.1",
     "com.unity.ide.rider": "3.0.36",

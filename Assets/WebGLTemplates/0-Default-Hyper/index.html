@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<script src="https://accounts.google.com/gsi/client" async defer></script>
     <title>{{{ PRODUCT_NAME }}}</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
@@ -110,5 +111,33 @@
 
     </script>
 	
+
+<script>
+  function googleLogin(clientId, nonce) 
+  {
+    const redirectUri = window.location.origin + window.location.pathname;
+	console.log(redirectUri)
+    const scope = "openid email profile";
+	google.accounts.id.initialize(
+	{
+        client_id: clientId,
+        callback: handleCredentialResponse,
+        ux_mode: "popup",
+		nonce: nonce,
+		scope,
+		redirect_uri: redirectUri
+    });
+	google.accounts.id.prompt();
+  }
+  
+  function handleCredentialResponse(response) 
+  {
+    // response.credential içinde JWT ID token var
+    console.log("ID Token (JWT):", response.credential);
+	window.MyGameInstance.SendMessage("GoogleOAuthWebGLJwtFetcher", "OnJwtReceived", response.credential);
+
+  }
+</script>
+
   </body>
 </html>

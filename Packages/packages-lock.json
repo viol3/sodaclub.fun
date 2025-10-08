@@ -7,6 +7,15 @@
       "dependencies": {},
       "hash": "64285ae060c9fe2aeb2a73b076b160939ce3be1a"
     },
+    "com.opendive.sui-unity-sdk": {
+      "version": "https://github.com/viol3/Sui-Unity-SDK.git?path=/Assets/Sui-Unity-SDK#zk-login",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
+      },
+      "hash": "0fe6111ae2c62f3f958049136488727a28450687"
+    },
     "com.unity.2d.animation": {
       "version": "10.2.1",
       "depth": 1,
