@@ -315,12 +315,21 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
 
     public void OnCopyClipboardPublicKeyClicked()
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
         WebGLCopyAndPaste.WebGLCopyAndPasteAPI.CopyToClipboard(_publicKeyInput.text);
+#else
+        GUIUtility.systemCopyBuffer = _publicKeyInput.text;
+#endif
     }
 
     public void OnCopyClipboardPrivateKeyClicked()
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
         WebGLCopyAndPaste.WebGLCopyAndPasteAPI.CopyToClipboard(_privateKeyInput.text);
+#else
+        GUIUtility.systemCopyBuffer = _privateKeyInput.text;
+#endif
+        
     }
 
     public void OnRestartButtonClick()

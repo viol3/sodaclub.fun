@@ -1,4 +1,4 @@
-using ec33.SuiWorks.Transactions;
+using viol3.SuiWorks.Transactions;
 using Newtonsoft.Json;
 using Sui.Accounts;
 using Sui.Rpc;
@@ -12,18 +12,11 @@ using System.Numerics;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace ec33.SuiWorks.Accounts
+namespace viol3.SuiWorks.Accounts
 {
     public class SuiEnokiZKLoginAccount : ISuiAccount
     {
         protected Account _ephemeralAccount;
-        protected SuiClient _client;
-
-        public async Task<BigInteger> GetBalanceAsync()
-        {
-            RpcResult<Balance> result = await _client.GetBalanceAsync(Sui.ZKLogin.AccountAddress.FromHex(EnokiZKLogin.GetSuiAddress()));
-            return result.Result.TotalBalance;
-        }
 
         public string GetPrivateKey()
         {
@@ -35,9 +28,14 @@ namespace ec33.SuiWorks.Accounts
             return EnokiZKLogin.GetSuiAddress();
         }
 
-        public void LoadClient(SuiClient client)
+        public SuiAccountType GetAccountType()
         {
-            _client = client;
+            return SuiAccountType.EnokiZKLogin;
+        }
+
+        public Account GetAccount()
+        {
+            return EnokiZKLogin.GetEphemeralAccount();
         }
 
         public string Serialize()
@@ -53,11 +51,6 @@ namespace ec33.SuiWorks.Accounts
             EnokiZKLogin.LoadZKPResponse(accountData.zkpResponse);
             EnokiZKLogin.LoadEphemeralKey(new Account(accountData.ephemeralPrivateKeyHex));
             EnokiZKLogin.LoadMaxEpoch(accountData.maxEpoch);
-        }
-
-        public async Task<RpcResult<TransactionBlockResponse>> SignAndExecuteTransaction(TransactionBlock txBlock, TransactionBlockResponseOptions opts = null)
-        {
-            return await EnokiZKLogin.SignAndExecuteTransactionBlock(txBlock);
         }
 
     }

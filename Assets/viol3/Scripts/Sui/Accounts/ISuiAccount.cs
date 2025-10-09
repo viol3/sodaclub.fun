@@ -1,4 +1,4 @@
-using ec33.SuiWorks.Transactions;
+using viol3.SuiWorks.Transactions;
 using Sui.Accounts;
 using Sui.Rpc;
 using Sui.Rpc.Client;
@@ -9,17 +9,21 @@ using System.Threading.Tasks;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
-namespace ec33.SuiWorks.Accounts
+namespace viol3.SuiWorks.Accounts
 {
     public interface ISuiAccount
     {
-        public Task<BigInteger> GetBalanceAsync();
         public string GetSuiAddress();
         public string GetPrivateKey();
-        public void LoadClient(SuiClient client);
+        public SuiAccountType GetAccountType();
+        public Account GetAccount();
         public string Serialize();
         public void Deserialize(string data);
-        public Task<RpcResult<TransactionBlockResponse>> SignAndExecuteTransaction(TransactionBlock txBlock, TransactionBlockResponseOptions opts = null);
+    }
+
+    public enum SuiAccountType
+    {
+       Local, EnokiZKLogin
     }
 }
 
