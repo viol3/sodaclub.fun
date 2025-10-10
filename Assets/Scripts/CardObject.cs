@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using viol3.SuiWorks.UI;
 
 public class CardObject : MonoBehaviour
 {
@@ -98,7 +99,7 @@ public class CardObject : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (!_clickable)
+        if (!_clickable || SuiAccountUI.Instance.IsUIActive())
         {
             return;
         }
@@ -107,7 +108,7 @@ public class CardObject : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (!_clickable)
+        if (!_clickable || SuiAccountUI.Instance.IsUIActive())
         {
             return;
         }
@@ -116,7 +117,7 @@ public class CardObject : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        if (!_clickable)
+        if (!_clickable || SuiAccountUI.Instance.IsUIActive())
         {
             return;
         }

@@ -12,6 +12,7 @@ using Sui.ZKLogin.Enoki.Utils;
 using Unity.VisualScripting;
 using Sui.Cryptography;
 using Sui.Accounts;
+using System.Numerics;
 
 namespace viol3.SuiWorks.Accounts
 {
@@ -259,13 +260,25 @@ namespace viol3.SuiWorks.Accounts
                 ShowBalanceChanges = true,
                 ShowEffects = true,
                 ShowObjectChanges = true,
+                ShowEvents = true,
             };
             LoadTransactionBlockResponseOptions(opts);
+        }
+
+        public async Task<float> GetSuiBalance()
+        {
+            RpcResult<Balance> balanceResult = await _client.GetBalanceAsync(new AccountAddress(_currentAccount.GetSuiAddress()));
+            return GetFloatFromBigInteger(balanceResult.Result.TotalBalance);
         }
 
         public async Task<RpcResult<TransactionBlockResponse>> TransferSui(float suiAmount, string recipientAddress)
         {
             TransactionBlock txBlock = _transactionKit.GetTransferSuiTransaction(suiAmount, recipientAddress);
+            return await SignAndExecuteTransactionBlockAsync(txBlock);
+        }
+
+        public async Task<RpcResult<TransactionBlockResponse>> SignAndExecuteTransactionBlockAsync(TransactionBlock txBlock)
+        {
             if (_currentAccount.GetAccountType() == SuiAccountType.Local)
             {
                 return await _client.SignAndExecuteTransactionBlockAsync(txBlock, _currentAccount.GetAccount(), _opts);
@@ -274,6 +287,13 @@ namespace viol3.SuiWorks.Accounts
             {
                 return await EnokiZKLogin.SignAndExecuteTransactionBlock(txBlock);
             }
+            
+        }
+
+        public static float GetFloatFromBigInteger(BigInteger value)
+        {
+            decimal suiValue = (decimal)value / 1_000_000_000m;
+            return (float)suiValue;
         }
     }
 }

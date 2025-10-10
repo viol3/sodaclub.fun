@@ -34,6 +34,11 @@ namespace Ali.Helper.Audio
             return false;
         }
 
+        public void PlayClick()
+        {
+            PlayClipByName("soda_click", false, 0.5f);
+        }
+
         public void PlayRandomCardFlip()
         {
             int randomIndex = Random.Range(1, 4);

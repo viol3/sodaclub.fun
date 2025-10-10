@@ -3,18 +3,25 @@ using Ali.Helper.Audio;
 using Ali.Helper.UI;
 using Ali.Helper.World;
 using Cysharp.Threading.Tasks.Triggers;
+using Soda.Sui;
+using Sui.Rpc;
+using Sui.Rpc.Models;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows;
+using viol3.SuiWorks.Accounts;
 using static System.Net.Mime.MediaTypeNames;
 
 public class DeathCardManager : LocalSingleton<DeathCardManager>
 {
-    [SerializeField] private Vector3[] _cardPositions;
+    [SerializeField] private UnityEngine.Vector3[] _cardPositions;
     [Space]
     [SerializeField] private ScaleAnimationLoop _faucetAnimation;
     [SerializeField] private Rotator _balanceRefreshRotator;
@@ -28,8 +35,6 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     [SerializeField] private Button _cashOutButton;
     [SerializeField] private Button _restartButton;
     [SerializeField] private DeathCardBetButton[] _betButtons;
-    [SerializeField] private TMP_InputField _privateKeyInput;
-    [SerializeField] private TMP_InputField _publicKeyInput;
     private float _balance = 0f;
     private float _realBet = 0.25f;
     private float _bet = 0.25f;
@@ -43,24 +48,11 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     private CardObject _clickedCard = null;
 
     private List<int> _normalCardIndices = new List<int>();
-    // Start is called before the first frame update
 
-    protected override void Awake()
-    {
-        base.Awake();
-        SuiManager.Instance.OnDeathCardEnded.AddListener(OnDeathCardEnded);
-        SuiManager.Instance.OnBalanceUpdated.AddListener(OnBalanceUpdated);
-        SuiManager.Instance.OnBalanceChanged.AddListener(OnBalanceChanged);
-        SuiManager.Instance.OnAccountInfoReceived.AddListener(OnAccountInfoReceived);
-    }
+    private SodaTransactionKit _transactionKit;
 
-    private void OnDestroy()
-    {
-        SuiManager.Instance?.OnDeathCardEnded.RemoveListener(OnDeathCardEnded);
-        SuiManager.Instance?.OnBalanceUpdated.RemoveListener(OnBalanceUpdated);
-        SuiManager.Instance?.OnBalanceChanged.RemoveListener(OnBalanceChanged);
-        SuiManager.Instance?.OnAccountInfoReceived.RemoveListener(OnAccountInfoReceived);
-    }
+    [DllImport("__Internal")]
+    public static extern void OpenURL(string url);
 
     IEnumerator Start()
     {
@@ -140,12 +132,7 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         UpdateMultiplierText();
         UpdateBetText();
         _betButtons[0].OnClick();
-    }
-
-    void OnAccountInfoReceived(string privateKey, string publicKey)
-    {
-        _privateKeyInput.text = privateKey;
-        _publicKeyInput.text = publicKey;
+        _transactionKit = new SodaTransactionKit();
     }
 
     void ResetSystem()
@@ -258,7 +245,7 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
             return;
         }
         int closedCardCount = _deck.GetClosedCardCount();
-        SuiManager.Instance.DeathCard(_realBet, (byte)closedCardCount);
+        DeathCard(_realBet, (byte)closedCardCount);
         _clickedCard = card;
         card.SetLoading(true);
         _deck.SetAllCardsClickable(false);
@@ -267,6 +254,96 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         {
             _betPanel.gameObject.SetActive(false);
             _tutorialPanel.gameObject.SetActive(false);
+        }
+    }
+
+    public async void DeathCard(float betAmount, byte cardCount)
+    {
+        int diceValue = await StartDeathCard((decimal)betAmount, cardCount);
+        OnDeathCardEnded(diceValue);
+    }
+
+    async Task<string> Commit(decimal amount, byte cardCount)
+    {
+
+        RpcResult<TransactionBlockResponse> result_task = await SuiAccountManager.Instance.SignAndExecuteTransactionBlockAsync(_transactionKit.Commit(amount, cardCount));
+
+
+        if (result_task.Error != null)
+        {
+            Debug.Log("PlayDeathCard Error => " + result_task.Error.Message);
+            return null;
+        }
+
+        if (result_task.Result != null && result_task.Result.BalanceChanges != null && result_task.Result.BalanceChanges.Length > 0)
+        {
+            BigInteger changeAmountBig = result_task.Result.BalanceChanges[0].Amount;
+            float changeAmount = SuiAccountManager.GetFloatFromBigInteger(changeAmountBig);
+            OnBalanceChanged(SuiAccountManager.GetFloatFromBigInteger(result_task.Result.BalanceChanges[0].Amount), false);
+        }
+
+        if (result_task.Result != null && result_task.Result.Effects != null && result_task.Result.Effects.Created.Length > 0)
+        {
+            SuiTransactionBlockEffects effects = result_task.Result.Effects;
+            return effects.Created[0].Reference.ObjectID.ToHex();
+        }
+
+        return null;
+
+    }
+
+    async Task<int> Reveal(string ownedCommit)
+    {
+        RpcResult<TransactionBlockResponse> result_task = await SuiAccountManager.Instance.SignAndExecuteTransactionBlockAsync(_transactionKit.Reveal(ownedCommit));
+
+        if (result_task.Error != null)
+        {
+            Debug.Log("Reveal Error => " + result_task.Error.Code + " => " + result_task.Error.Message);
+            Debug.Log(result_task.Error.Data);
+            return -1;
+        }
+
+        if (result_task.Result != null && result_task.Result.BalanceChanges != null && result_task.Result.BalanceChanges.Length > 0)
+        {
+            BigInteger changeAmountBig = result_task.Result.BalanceChanges[0].Amount;
+            float changeAmount = SuiAccountManager.GetFloatFromBigInteger(changeAmountBig);
+            OnBalanceChanged(SuiAccountManager.GetFloatFromBigInteger(result_task.Result.BalanceChanges[0].Amount), true);
+        }
+
+        try
+        {
+            foreach (var m_event in result_task.Result.Events)
+            {
+                if (m_event.Type.Contains("DiceValue"))
+                {
+                    string value = m_event.ParsedJson.GetValue("value").ToString();
+                    return int.Parse(value);
+                }
+            }
+            return -1;
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError(ex.Message);
+            Debug.LogError(ex.StackTrace);
+            return -1;
+        }
+
+
+    }
+
+    async Task<int> StartDeathCard(decimal amount, byte cardCount)
+    {
+        string ownedCommit = await Commit(amount, cardCount);
+        if (!string.IsNullOrEmpty(ownedCommit))
+        {
+            int diceResult = await Reveal(ownedCommit);
+            return diceResult;
+        }
+        else
+        {
+            Debug.Log("ownedCommit is null");
+            return -1;
         }
     }
 
@@ -287,7 +364,7 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
 
     public void OnFaucetButtonClick()
     {
-        SuiManager.OpenURL("https://faucet.sui.io");
+        OpenURL("https://faucet.sui.io");
     }
 
     public void OnRefreshButtonClick()
@@ -303,34 +380,14 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     IEnumerator RefreshProcess()
     {
         _balanceRefreshRotator.enabled = true;
-        yield return SuiManager.Instance.RefreshProcess();
+        Task<float> balanceTask = SuiAccountManager.Instance.GetSuiBalance();
+        yield return new WaitUntil(() => balanceTask.IsFaulted || balanceTask.IsCompleted);
+        OnBalanceUpdated(balanceTask.Result);
         _balanceRefreshRotator.enabled = false;
         _refreshingBalance = false;
+        yield return null;
     }
 
-    public void OnResetAccountButtonClick()
-    {
-        SuiManager.Instance.ResetAccount();
-    }
-
-    public void OnCopyClipboardPublicKeyClicked()
-    {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        WebGLCopyAndPaste.WebGLCopyAndPasteAPI.CopyToClipboard(_publicKeyInput.text);
-#else
-        GUIUtility.systemCopyBuffer = _publicKeyInput.text;
-#endif
-    }
-
-    public void OnCopyClipboardPrivateKeyClicked()
-    {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        WebGLCopyAndPaste.WebGLCopyAndPasteAPI.CopyToClipboard(_privateKeyInput.text);
-#else
-        GUIUtility.systemCopyBuffer = _privateKeyInput.text;
-#endif
-        
-    }
 
     public void OnRestartButtonClick()
     {
