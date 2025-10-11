@@ -17,7 +17,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 using viol3.SuiWorks.Accounts;
-using static System.Net.Mime.MediaTypeNames;
+using viol3.SuiWorks.UI;
 
 public class DeathCardManager : LocalSingleton<DeathCardManager>
 {
@@ -43,6 +43,7 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
 
     private bool _refreshingBalance = false;
 
+    private bool _gameStarted = false;
     private bool _over = false;
     private bool _globalCardInput = true;
     private CardObject _clickedCard = null;
@@ -54,9 +55,67 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     [DllImport("__Internal")]
     public static extern void OpenURL(string url);
 
-    IEnumerator Start()
+
+    void Start()
     {
         Init();
+        SubscribeEvents();
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeEvents();
+    }
+
+    void SubscribeEvents()
+    {
+        SuiAccountUI.Instance?.OnInitialized.AddListener(OnInitialized);
+        SuiAccountUI.Instance?.OnLoginStarted.AddListener(OnLoginStarted);
+        SuiAccountUI.Instance?.OnLoginEnded.AddListener(OnLoginEnded);
+        SuiAccountUI.Instance?.OnGenerateWalletButtonClicked.AddListener(OnAccountUIButtonClick);
+        SuiAccountUI.Instance?.OnDirectWalletCancelButtonClicked.AddListener(OnAccountUIButtonClick);
+        SuiAccountUI.Instance?.OnLogoutButtonClicked.AddListener(OnAccountUIButtonClick);
+        SuiAccountUI.Instance?.OnCopyClipboardPrivateKeyClicked.AddListener(OnAccountUIButtonClick);
+        SuiAccountUI.Instance?.OnPlayButtonClicked.AddListener(OnPlayButtonClicked);
+    }
+
+    void UnsubscribeEvents()
+    {
+        SuiAccountUI.Instance?.OnInitialized.RemoveListener(OnInitialized);
+        SuiAccountUI.Instance?.OnLoginStarted.RemoveListener(OnLoginStarted);
+        SuiAccountUI.Instance?.OnLoginEnded.RemoveListener(OnLoginEnded);
+        SuiAccountUI.Instance?.OnGenerateWalletButtonClicked.RemoveListener(OnAccountUIButtonClick);
+        SuiAccountUI.Instance?.OnDirectWalletCancelButtonClicked.RemoveListener(OnAccountUIButtonClick);
+        SuiAccountUI.Instance?.OnLogoutButtonClicked.RemoveListener(OnAccountUIButtonClick);
+        SuiAccountUI.Instance?.OnCopyClipboardPrivateKeyClicked.RemoveListener(OnAccountUIButtonClick);
+        SuiAccountUI.Instance?.OnPlayButtonClicked.RemoveListener(OnPlayButtonClicked);
+    }
+
+    void OnAccountUIButtonClick()
+    {
+        PlayClickSound();
+    }
+
+    void OnInitialized()
+    {
+        if(SuiAccountManager.Instance.IsLoggedIn())
+        {
+            StartCoroutine(RefreshProcess());
+        }
+    }
+
+    void OnPlayButtonClicked()
+    {
+        if(!_gameStarted)
+        {
+            _gameStarted = true;
+            StartCoroutine(StartGameProcess());
+        }
+        PlayClickSound();
+    }
+
+    IEnumerator StartGameProcess()
+    {
         _deck.SetAllCardsClickable(false);
         yield return new WaitForSeconds(0.5f);
         _deck.Intro();
@@ -70,6 +129,20 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         yield return new WaitForSeconds(0.5f);
         _deck.Spread(_cardPositions);
         _deck.SetAllCardsClickable(true);
+    }
+
+    void OnLoginStarted()
+    {
+        PlayClickSound();
+    }
+
+    void OnLoginEnded(bool logged)
+    {
+        if(logged)
+        {
+            AudioPool.Instance.PlaySodaOpen();
+            OnRefreshButtonClick();
+        }
     }
 
     IEnumerator NewHandProcess()
@@ -347,6 +420,11 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         }
     }
 
+    public void PlayClickSound()
+    {
+        AudioPool.Instance.PlayClick();
+    }
+
     public bool IsGlobalCardInputEnabled()
     {
         return _globalCardInput;
@@ -355,16 +433,23 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     public void OnSettingsOpened()
     {
         _globalCardInput = false;
+        PlayClickSound();
     }
 
     public void OnSettingsClosed()
     {
         _globalCardInput = true;
+        PlayClickSound();
     }
 
     public void OnFaucetButtonClick()
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
         OpenURL("https://faucet.sui.io");
+#elif UNITY_EDITOR
+        Application.OpenURL("https://faucet.sui.io");
+#endif
+        PlayClickSound();
     }
 
     public void OnRefreshButtonClick()
@@ -375,6 +460,7 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         }
         _refreshingBalance = true;
         StartCoroutine(RefreshProcess());
+        PlayClickSound();
     }
 
     IEnumerator RefreshProcess()
@@ -393,6 +479,7 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
     {
         OnCashOutButtonClick();
         _restartButton.gameObject.SetActive(false);
+        PlayClickSound();
     }
 
     public void OnNewHandButtonClick()
@@ -403,6 +490,7 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         UpdateBetText();
         _newHandButton.gameObject.SetActive(false);
         _cashOutButton.gameObject.SetActive(false);
+        PlayClickSound();
     }
 
     public void OnCashOutButtonClick()
@@ -417,6 +505,7 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         _betPanel.gameObject.SetActive(true);
         _tutorialPanel.gameObject.SetActive(true);
         StartCoroutine(NewHandProcess());
+        PlayClickSound();
     }
 
     public void OnBetButtonClick(DeathCardBetButton betButton)
@@ -430,6 +519,7 @@ public class DeathCardManager : LocalSingleton<DeathCardManager>
         }
         betButton.Select();
         UpdateBetText();
+        PlayClickSound();
     }
 
 }

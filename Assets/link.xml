@@ -1,0 +1,8 @@
+<linker>
+  <assembly fullname="Assembly-CSharp">
+    <type fullname="OpenDive.Utils.Jwt.JWTHeader" preserve="all"/>
+    <type fullname="OpenDive.Utils.Jwt.JWTPayload" preserve="all"/>
+    <type fullname="OpenDive.Utils.Jwt.JWT" preserve="all"/>
+  </assembly>
+  <assembly fullname="Newtonsoft.Json" preserve="all"/>
+</linker>

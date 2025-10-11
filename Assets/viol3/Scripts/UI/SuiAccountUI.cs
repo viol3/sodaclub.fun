@@ -1,8 +1,12 @@
 using Ali.Helper;
 using Ali.Helper.Audio;
 using DG.Tweening;
+using NBitcoin;
+using System.Collections;
+using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -23,10 +27,13 @@ namespace viol3.SuiWorks.UI
         [SerializeField] private Image _userImage;
         [Space]
         [SerializeField] private Image _fadeImage;
+        [SerializeField] private RectTransform _initPanel;
         [SerializeField] private RectTransform _loginPanel;
         [SerializeField] private RectTransform _loggingPanel;
         [SerializeField] private RectTransform _directWalletPanel;
         [SerializeField] private RectTransform _userPanel;
+        [Space]
+        [SerializeField] private Button _loginCopyButton;
         [Space]
         [SerializeField] private TMP_InputField _privateKeyInput;
         [Space]
@@ -36,6 +43,7 @@ namespace viol3.SuiWorks.UI
         [SerializeField] private TMP_Text _loggingText;
         [SerializeField] private TMP_Text _loggedText;
 
+        public UnityEvent OnInitialized = new UnityEvent();
         public UnityEvent OnLoginStarted = new UnityEvent();
         public UnityEvent<bool> OnLoginEnded = new UnityEvent<bool>();
         public UnityEvent OnDirectWalletButtonClicked = new UnityEvent();
@@ -44,10 +52,15 @@ namespace viol3.SuiWorks.UI
         public UnityEvent OnCopyClipboardPrivateKeyClicked = new UnityEvent();
         public UnityEvent OnLogoutButtonClicked = new UnityEvent();
         public UnityEvent OnPlayButtonClicked = new UnityEvent();
+
+        private CancellationTokenSource _cancellationTokenSource;
+
         private async void Start()
         {
             SuiAccountManager.Initialize("testnet", _googleClientId, _enokiPublicKey, _redirectUri);
             await SuiAccountManager.Instance.Validate();
+            OnInitialized?.Invoke();
+            _initPanel.gameObject.SetActive(false);
             SuiAccountManager.Instance.LoadTransactionKit(new TransactionKit());
             if (!SuiAccountManager.Instance.IsLoggedIn())
             {
@@ -61,22 +74,28 @@ namespace viol3.SuiWorks.UI
 
         public async void OnGoogleLoginButtonClick()
         {
+            _cancellationTokenSource = new CancellationTokenSource();
             ActivateLoggingPanel();
             OnLoginStarted.Invoke();
-            bool result = await SuiAccountManager.Instance.LoginWithGoogle();
+            bool result = await SuiAccountManager.Instance.LoginWithGoogle(_cancellationTokenSource.Token);
+            
             if (result) 
             {
-                SetLoggedPanel();
-                OnLoginEnded.Invoke(true);
-                await Task.Delay(2000);
-                ActivateUserPanel();
-                
+                StartCoroutine(LoginCompleteProcess());
             }
             else
             {
                 ActivateLoginPanel();
                 OnLoginEnded.Invoke(false);
             }
+        }
+
+        IEnumerator LoginCompleteProcess()
+        {
+            SetLoggedPanel();
+            OnLoginEnded.Invoke(true);
+            yield return new WaitForSeconds(2f);
+            ActivateUserPanel();
         }
 
         public void OnDirectWalletButtonClick()
@@ -92,7 +111,7 @@ namespace viol3.SuiWorks.UI
             OnGenerateWalletButtonClicked.Invoke();
         }
 
-        public async void OnImportWalletButtonClick()
+        public void OnImportWalletButtonClick()
         {
             string privateKeyHex = _privateKeyInput.text;
             OnLoginStarted?.Invoke();
@@ -100,11 +119,7 @@ namespace viol3.SuiWorks.UI
             {
                 SuiAccountManager.Instance.LoginWithLocal(privateKeyHex);
                 ActivateLoggingPanel();
-                await Task.Delay(500);
-                SetLoggedPanel();
-                OnLoginEnded?.Invoke(true);
-                await Task.Delay(2000);
-                ActivateUserPanel();
+                StartCoroutine(LoginCompleteProcess());
             }
             else
             {
@@ -131,11 +146,26 @@ namespace viol3.SuiWorks.UI
             OnCopyClipboardPrivateKeyClicked.Invoke();
         }
 
+        public void OnLoginCopyClipboardPrivateKeyClick()
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            WebGLCopyAndPaste.WebGLCopyAndPasteAPI.CopyToClipboard(SuiAccountManager.Instance.GetPrivateKey());
+#else
+            GUIUtility.systemCopyBuffer = SuiAccountManager.Instance.GetPrivateKey();
+#endif
+            OnCopyClipboardPrivateKeyClicked.Invoke();
+        }
+
         public void OnLogoutButtonClick()
         {
             SuiAccountManager.Instance.Logout();
             ActivateLoginPanel();
             OnLogoutButtonClicked?.Invoke();
+        }
+
+        public void OnCancelLoginButtonClick()
+        {
+            _cancellationTokenSource.Cancel();
         }
 
         public void OnPlayButtonClick()
@@ -162,6 +192,7 @@ namespace viol3.SuiWorks.UI
             _userAddressFullText.text = suiAddress;
             _userAddressText.text = suiAddress.Substring(0, 5) + ".." + suiAddress.Substring(suiAddress.Length - 4, 3);
             _userNameText.text = SodaNameGenerator.GenerateNickname(suiAddress);
+            _loginCopyButton.gameObject.SetActive(!SuiAccountManager.Instance.IsEnokiZKLogin());
         }
 
         void ResetLoggingPanel()

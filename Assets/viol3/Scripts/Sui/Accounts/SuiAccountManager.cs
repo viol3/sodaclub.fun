@@ -13,6 +13,7 @@ using Unity.VisualScripting;
 using Sui.Cryptography;
 using Sui.Accounts;
 using System.Numerics;
+using System.Threading;
 
 namespace viol3.SuiWorks.Accounts
 {
@@ -162,6 +163,11 @@ namespace viol3.SuiWorks.Accounts
             }
         }
 
+        public string GetPrivateKey()
+        {
+            return _currentAccount.GetPrivateKey();
+        }
+
         public string GetSuiAddress()
         {
             return _currentAccount.GetSuiAddress();
@@ -189,12 +195,12 @@ namespace viol3.SuiWorks.Accounts
             }
         }
 
-        public async Task<bool> LoginWithGoogle()
+        public async Task<bool> LoginWithGoogle(CancellationToken cancellationToken)
         {
             
             try
             {
-                EnokiZKPResponse response = await EnokiZKLogin.Login();
+                EnokiZKPResponse response = await EnokiZKLogin.Login(cancellationToken);
                 if (response == null) 
                 {
                     return false;
