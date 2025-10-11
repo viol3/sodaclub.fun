@@ -5166,9 +5166,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: SuiAccountUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5034890832341826344, guid: 3cb29566aa634f449afa4a692e45d59c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6002735190336262902, guid: 3cb29566aa634f449afa4a692e45d59c, type: 3}
       propertyPath: _redirectUri
-      value: http://localhost:3000/
+      value: https://sodaclub.vercel.app/
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
